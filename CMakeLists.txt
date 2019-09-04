@@ -32,6 +32,7 @@ add_subdirectory(PixelFlow)
 add_subdirectory(PixelFlow3)
 add_subdirectory(Picture)
 add_subdirectory(Snake)
+add_subdirectory(Rainbow)
 
 set(CPACK_GENERATOR "DEB")
 set(CPACK_PACKAGE_DESCRIPTION_SUMMARY "LEDCube matrixserver example Applications")
