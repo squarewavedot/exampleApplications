@@ -1,8 +1,8 @@
-project(genetic)
+project(Genetic)
 
 find_package(matrixapplication REQUIRED)
 
-add_executable(genetic main.cpp genetic.cpp)
-target_link_libraries(genetic matrixapplication::matrixapplication)
+add_executable(Genetic main.cpp genetic.cpp)
+target_link_libraries(Genetic matrixapplication::matrixapplication)
 
-install(TARGETS genetic DESTINATION /home/pi/APPS)
+install(TARGETS Genetic DESTINATION /home/pi/APPS)
