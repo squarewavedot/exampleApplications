@@ -6,12 +6,15 @@
 #include "Image.h"
 #include <vector>
 
-class Picture : public CubeApplication{
+class Picture : public CubeApplication {
 public:
-    Picture();
+    Picture(int argc, char *argv[]);
+
     bool loop();
 
 private:
+    bool loadImage(std::string filepath);
+
     Image autoload;
     std::vector<Joystick *> joysticks;
 };

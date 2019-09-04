@@ -7,6 +7,7 @@ set(MAINSRC
 
 set(MAINLIBS
         matrixapplication::matrixapplication
+        stdc++fs
 )
 
 add_executable(Picture ${MAINSRC})
