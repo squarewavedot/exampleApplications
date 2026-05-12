@@ -1,0 +1,684 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CMake Project Details &mdash; LED Matrix Cube Examples Documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=9edc463e" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=01f34227"></script>
+      <script src="_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Architecture" href="architecture.html" />
+    <link rel="prev" title="Installation" href="installation.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            LED Matrix Cube Examples
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="overview.html">Overview</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="overview.html#project-purpose">Project Purpose</a></li>
+<li class="toctree-l2"><a class="reference internal" href="overview.html#architecture-overview">Architecture Overview</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="overview.html#framework-layer">Framework Layer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="overview.html#application-layer">Application Layer</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="overview.html#hardware-support">Hardware Support</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="overview.html#development-platforms">Development Platforms</a></li>
+<li class="toctree-l3"><a class="reference internal" href="overview.html#production-platforms">Production Platforms</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="overview.html#display-technologies">Display Technologies</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="overview.html#d-cube-displays">3D Cube Displays</a></li>
+<li class="toctree-l3"><a class="reference internal" href="overview.html#d-matrix-displays">2D Matrix Displays</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="overview.html#connection-architecture">Connection Architecture</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="overview.html#primary-connection-methods">Primary Connection Methods</a></li>
+<li class="toctree-l3"><a class="reference internal" href="overview.html#server-implementations">Server Implementations</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="overview.html#platform-specific-features">Platform-Specific Features</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="overview.html#raspberry-pi-detection">Raspberry Pi Detection</a></li>
+<li class="toctree-l3"><a class="reference internal" href="overview.html#cross-platform-components">Cross-Platform Components</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="overview.html#development-workflow">Development Workflow</a></li>
+<li class="toctree-l2"><a class="reference internal" href="overview.html#package-management">Package Management</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#prerequisites">Prerequisites</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="installation.html#framework-dependency">Framework Dependency</a></li>
+<li class="toctree-l3"><a class="reference internal" href="installation.html#system-dependencies">System Dependencies</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#build-system-requirements">Build System Requirements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#platform-detection">Platform Detection</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="installation.html#raspberry-pi-detection">Raspberry Pi Detection</a></li>
+<li class="toctree-l3"><a class="reference internal" href="installation.html#enabled-applications-by-platform">Enabled Applications by Platform</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#building-from-source">Building from Source</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="installation.html#basic-build-process">Basic Build Process</a></li>
+<li class="toctree-l3"><a class="reference internal" href="installation.html#build-configuration-options">Build Configuration Options</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#dependency-resolution">Dependency Resolution</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="installation.html#cmake-package-discovery">CMake Package Discovery</a></li>
+<li class="toctree-l3"><a class="reference internal" href="installation.html#library-linking-configuration">Library Linking Configuration</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#troubleshooting-build-issues">Troubleshooting Build Issues</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="installation.html#common-problems-and-solutions">Common Problems and Solutions</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#deployment">Deployment</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="installation.html#package-generation">Package Generation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="installation.html#manual-installation">Manual Installation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#running-applications">Running Applications</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="installation.html#server-requirement">Server Requirement</a></li>
+<li class="toctree-l3"><a class="reference internal" href="installation.html#application-execution">Application Execution</a></li>
+<li class="toctree-l3"><a class="reference internal" href="installation.html#connection-priority">Connection Priority</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">CMake Project Details</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#project-structure">Project Structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#main-cmake-configuration">Main CMake Configuration</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#project-metadata">Project Metadata</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#global-build-settings">Global Build Settings</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#platform-detection">Platform Detection</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#raspberry-pi-detection">Raspberry Pi Detection</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#macos-specific-configuration">macOS-Specific Configuration</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#dependency-management">Dependency Management</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#matrixapplication-discovery">matrixapplication Discovery</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#boost-configuration">Boost Configuration</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#individual-application-configuration">Individual Application Configuration</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#typical-application-cmake-structure">Typical Application CMake Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#library-detection-patterns">Library Detection Patterns</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#application-selection">Application Selection</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#conditional-compilation">Conditional Compilation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#package-generation">Package Generation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#cpack-configuration">CPack Configuration</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#build-targets">Build Targets</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#standard-targets">Standard Targets</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#custom-build-options">Custom Build Options</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#enabling-additional-applications">Enabling Additional Applications</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#custom-library-paths">Custom Library Paths</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#debug-configuration">Debug Configuration</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#build-system-maintenance">Build System Maintenance</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#adding-new-applications">Adding New Applications</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dependency-updates">Dependency Updates</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="architecture.html">Architecture</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="architecture.html#framework-architecture">Framework Architecture</a></li>
+<li class="toctree-l2"><a class="reference internal" href="architecture.html#application-base-classes">Application Base Classes</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="architecture.html#cubeapplication-class">CubeApplication Class</a></li>
+<li class="toctree-l3"><a class="reference internal" href="architecture.html#matrixapplication-class">MatrixApplication Class</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="architecture.html#specialized-application-types">Specialized Application Types</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="architecture.html#animation-and-effects-applications">Animation and Effects Applications</a></li>
+<li class="toctree-l3"><a class="reference internal" href="architecture.html#interactive-game-applications">Interactive Game Applications</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="architecture.html#framework-core-components">Framework Core Components</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="architecture.html#connection-management">Connection Management</a></li>
+<li class="toctree-l3"><a class="reference internal" href="architecture.html#frame-rate-control">Frame Rate Control</a></li>
+<li class="toctree-l3"><a class="reference internal" href="architecture.html#input-processing">Input Processing</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="architecture.html#hardware-abstraction">Hardware Abstraction</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="architecture.html#server-implementation-abstraction">Server Implementation Abstraction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="architecture.html#display-abstraction">Display Abstraction</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="architecture.html#design-patterns">Design Patterns</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="architecture.html#application-lifecycle-pattern">Application Lifecycle Pattern</a></li>
+<li class="toctree-l3"><a class="reference internal" href="architecture.html#resource-management-pattern">Resource Management Pattern</a></li>
+<li class="toctree-l3"><a class="reference internal" href="architecture.html#state-management-pattern">State Management Pattern</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="architecture.html#performance-optimization">Performance Optimization</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="architecture.html#frame-rate-optimization">Frame Rate Optimization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="architecture.html#memory-optimization">Memory Optimization</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="architecture.html#real-world-application-patterns">Real-World Application Patterns</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="architecture.html#game-state-management-breakout3d">Game State Management (Breakout3D)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="architecture.html#particle-system-architecture-pixelflow">Particle System Architecture (PixelFlow)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="architecture.html#multi-player-game-management-snake-breakout3d">Multi-Player Game Management (Snake/Breakout3D)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="architecture.html#physics-and-collision-systems-breakout3d">Physics and Collision Systems (Breakout3D)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="architecture.html#advanced-input-handling">Advanced Input Handling</a></li>
+<li class="toctree-l3"><a class="reference internal" href="architecture.html#high-score-and-persistence-breakout3d-snake">High Score and Persistence (Breakout3D/Snake)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="parameters.html">Dynamic Parameter System</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="parameters.html#core-concepts">Core Concepts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parameters.html#how-to-use">How to Use</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="parameters.html#register-parameters-in-the-constructor">1. Register Parameters in the Constructor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="parameters.html#read-parameters-in-your-loop">2. Read Parameters in Your Loop</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="parameters.html#supported-parameter-types">Supported Parameter Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parameters.html#presets">Presets</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parameters.html#network-communication">Network Communication</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="applications/index.html">Applications</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="applications/index.html#application-overview">Application Overview</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="applications/index.html#d-cube-applications">3D Cube Applications</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="applications/cubetestapp.html">CubeTestApp</a></li>
+<li class="toctree-l4"><a class="reference internal" href="applications/snake.html">Snake</a></li>
+<li class="toctree-l4"><a class="reference internal" href="applications/blackout3d.html">Blackout3D</a></li>
+<li class="toctree-l4"><a class="reference internal" href="applications/breakout3d.html">Breakout3D</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="applications/index.html#d-matrix-applications">2D Matrix Applications</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="applications/index.html#animation-and-effects-applications">Animation and Effects Applications</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="applications/pixelflow.html">PixelFlow</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="applications/index.html#hardware-integration">Hardware Integration</a><ul class="simple">
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="applications/index.html#application-selection-guide">Application Selection Guide</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="applications/index.html#for-3d-led-cube-hardware">For 3D LED Cube Hardware</a></li>
+<li class="toctree-l3"><a class="reference internal" href="applications/index.html#for-2d-matrix-displays">For 2D Matrix Displays</a></li>
+<li class="toctree-l3"><a class="reference internal" href="applications/index.html#for-effects-and-animation">For Effects and Animation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="applications/index.html#platform-compatibility">Platform Compatibility</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="applications/index.html#all-platforms-desktop-raspberry-pi">All Platforms (Desktop + Raspberry Pi)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="applications/index.html#raspberry-pi-only">Raspberry Pi Only</a></li>
+<li class="toctree-l3"><a class="reference internal" href="applications/index.html#build-configuration">Build Configuration</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="applications/index.html#common-application-features">Common Application Features</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="applications/index.html#input-handling">Input Handling</a></li>
+<li class="toctree-l3"><a class="reference internal" href="applications/index.html#frame-rate-management">Frame Rate Management</a></li>
+<li class="toctree-l3"><a class="reference internal" href="applications/index.html#performance-tuning">Performance Tuning</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="applications/index.html#development-patterns">Development Patterns</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="applications/index.html#application-structure">Application Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="applications/index.html#main-loop-pattern">Main Loop Pattern</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="api/index.html">API Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="api/index.html#framework-base-classes">Framework Base Classes</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api/index.html#cubeapplication-class">CubeApplication Class</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/index.html#matrixapplication-class">MatrixApplication Class</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="api/index.html#common-patterns-and-utilities">Common Patterns and Utilities</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api/index.html#programming-patterns">Programming Patterns</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/index.html#input-and-control-systems">Input and Control Systems</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/index.html#color-and-visual-systems">Color and Visual Systems</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="api/index.html#quick-reference">Quick Reference</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api/index.html#essential-classes">Essential Classes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/index.html#essential-data-types">Essential Data Types</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="api/index.html#application-lifecycle">Application Lifecycle</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api/index.html#standard-application-pattern">Standard Application Pattern</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/index.html#frame-rate-management">Frame Rate Management</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="api/index.html#connection-architecture">Connection Architecture</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api/index.html#server-communication">Server Communication</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="api/index.html#performance-considerations">Performance Considerations</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api/index.html#optimization-techniques">Optimization Techniques</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="api/index.html#error-handling">Error Handling</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api/index.html#connection-failures">Connection Failures</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/index.html#resource-management">Resource Management</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">LED Matrix Cube Examples</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">CMake Project Details</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/cmake.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="cmake-project-details">
+<h1>CMake Project Details<a class="headerlink" href="#cmake-project-details" title="Link to this heading"></a></h1>
+<p>This section provides detailed information about the CMake build system configuration, project structure, and build customization options for the LED Matrix Cube example applications.</p>
+<section id="project-structure">
+<h2>Project Structure<a class="headerlink" href="#project-structure" title="Link to this heading"></a></h2>
+<p>The CMake project is organized with a main project file and individual subdirectories for each application:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>exampleApplications/
+├── CMakeLists.txt              # Main project configuration
+├── CubeTestApp/
+│   ├── CMakeLists.txt          # CubeTestApp build configuration
+│   ├── CubeTest.cpp
+│   ├── CubeTest.h
+│   └── main.cpp
+├── Snake/
+│   ├── CMakeLists.txt          # Snake game build configuration
+│   ├── snake.cpp
+│   ├── snake.h
+│   └── main.cpp
+└── [other applications...]
+</pre></div>
+</div>
+</section>
+<section id="main-cmake-configuration">
+<h2>Main CMake Configuration<a class="headerlink" href="#main-cmake-configuration" title="Link to this heading"></a></h2>
+<section id="project-metadata">
+<h3>Project Metadata<a class="headerlink" href="#project-metadata" title="Link to this heading"></a></h3>
+<p>The main <code class="docutils literal notranslate"><span class="pre">CMakeLists.txt</span></code> defines the project metadata and global settings:</p>
+<div class="highlight-cmake notranslate"><div class="highlight"><pre><span></span><span class="nb">cmake_minimum_required</span><span class="p">(</span><span class="s">VERSION</span><span class="w"> </span><span class="s">3.07</span><span class="p">)</span>
+<span class="nb">project</span><span class="p">(</span><span class="s">exampleApplications</span><span class="p">)</span>
+
+<span class="nb">set</span><span class="p">(</span><span class="s">CMAKE_CXX_STANDARD</span><span class="w"> </span><span class="s">17</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="global-build-settings">
+<h3>Global Build Settings<a class="headerlink" href="#global-build-settings" title="Link to this heading"></a></h3>
+<p><strong>C++ Standard</strong>: The project requires C++17 features and sets this as the minimum standard.</p>
+<p><strong>Build Type Configuration</strong>: Defaults to Release mode for optimal performance:</p>
+<div class="highlight-cmake notranslate"><div class="highlight"><pre><span></span><span class="nb">set</span><span class="p">(</span><span class="s">default_build_type</span><span class="w"> </span><span class="s2">&quot;Release&quot;</span><span class="p">)</span>
+
+<span class="nb">if</span><span class="w"> </span><span class="p">(</span><span class="s">NOT</span><span class="w"> </span><span class="s">CMAKE_BUILD_TYPE</span><span class="w"> </span><span class="s">AND</span><span class="w"> </span><span class="s">NOT</span><span class="w"> </span><span class="s">CMAKE_CONFIGURATION_TYPES</span><span class="p">)</span>
+<span class="w">    </span><span class="nb">message</span><span class="p">(</span><span class="s">STATUS</span><span class="w"> </span><span class="s2">&quot;Setting build type to &#39;${default_build_type}&#39; as none was specified.&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="nb">set</span><span class="p">(</span><span class="s">CMAKE_BUILD_TYPE</span><span class="w"> </span><span class="s2">&quot;${default_build_type}&quot;</span><span class="w"> </span><span class="s">CACHE</span><span class="w"> </span><span class="s">STRING</span><span class="w"> </span><span class="s2">&quot;Choose the type of build.&quot;</span><span class="w"> </span><span class="s">FORCE</span><span class="p">)</span>
+<span class="w">    </span><span class="nb">set_property</span><span class="p">(</span><span class="s">CACHE</span><span class="w"> </span><span class="s">CMAKE_BUILD_TYPE</span><span class="w"> </span><span class="s">PROPERTY</span><span class="w"> </span><span class="s">STRINGS</span>
+<span class="w">            </span><span class="s2">&quot;Debug&quot;</span><span class="w"> </span><span class="s2">&quot;Release&quot;</span><span class="w"> </span><span class="s2">&quot;MinSizeRel&quot;</span><span class="w"> </span><span class="s2">&quot;RelWithDebInfo&quot;</span><span class="p">)</span>
+<span class="nb">endif</span><span class="p">()</span>
+</pre></div>
+</div>
+<p><strong>Compiler Optimization</strong>: Release builds use aggressive optimization:</p>
+<div class="highlight-cmake notranslate"><div class="highlight"><pre><span></span><span class="nb">set</span><span class="p">(</span><span class="s">CMAKE_CXX_FLAGS_RELEASE</span><span class="w"> </span><span class="s2">&quot;-O3&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="platform-detection">
+<h2>Platform Detection<a class="headerlink" href="#platform-detection" title="Link to this heading"></a></h2>
+<section id="raspberry-pi-detection">
+<h3>Raspberry Pi Detection<a class="headerlink" href="#raspberry-pi-detection" title="Link to this heading"></a></h3>
+<p>The build system automatically detects Raspberry Pi platforms:</p>
+<div class="highlight-cmake notranslate"><div class="highlight"><pre><span></span><span class="nb">if</span><span class="w"> </span><span class="p">(</span><span class="s">EXISTS</span><span class="w"> </span><span class="s2">&quot;/boot/LICENCE.broadcom&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="nb">set</span><span class="p">(</span><span class="s">BUILD_RASPBERRYPI</span><span class="w"> </span><span class="s">true</span><span class="p">)</span>
+<span class="w">    </span><span class="nb">message</span><span class="p">(</span><span class="s2">&quot;Build on Raspberry Pi is enabled&quot;</span><span class="p">)</span>
+<span class="nb">endif</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>This detection enables:</p>
+<ul class="simple">
+<li><p>Platform-specific applications (ImuTest, PixelFlow, PixelFlow2, Rainbow)</p></li>
+<li><p>Hardware-optimized build flags</p></li>
+<li><p>Raspberry Pi specific library paths</p></li>
+</ul>
+</section>
+<section id="macos-specific-configuration">
+<h3>macOS-Specific Configuration<a class="headerlink" href="#macos-specific-configuration" title="Link to this heading"></a></h3>
+<p>The build system includes macOS-specific link directory configuration:</p>
+<div class="highlight-cmake notranslate"><div class="highlight"><pre><span></span><span class="nb">IF</span><span class="p">(</span><span class="s">APPLE</span><span class="p">)</span>
+<span class="w">    </span><span class="c"># Fix linking on 10.14+</span>
+<span class="w">    </span><span class="nb">LINK_DIRECTORIES</span><span class="p">(</span><span class="s">/usr/local/lib</span><span class="p">)</span>
+<span class="nb">ENDIF</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>This addresses linking issues on newer macOS versions by explicitly including the Homebrew library directory.</p>
+</section>
+</section>
+<section id="dependency-management">
+<h2>Dependency Management<a class="headerlink" href="#dependency-management" title="Link to this heading"></a></h2>
+<section id="matrixapplication-discovery">
+<h3>matrixapplication Discovery<a class="headerlink" href="#matrixapplication-discovery" title="Link to this heading"></a></h3>
+<p>The build system searches for the <code class="docutils literal notranslate"><span class="pre">matrixapplication</span></code> package (version &gt;= 0.3) using a
+prioritised path list. <code class="docutils literal notranslate"><span class="pre">./matrixserver/install/</span></code> is checked first, allowing a locally
+built matrixserver to be picked up without any extra configuration:</p>
+<div class="highlight-cmake notranslate"><div class="highlight"><pre><span></span><span class="nb">set</span><span class="p">(</span><span class="s">CMAKE_PREFIX_PATH</span><span class="w"> </span><span class="s2">&quot;${CMAKE_SOURCE_DIR}/matrixserver/install&quot;</span><span class="w"> </span><span class="o">${</span><span class="nv">CMAKE_PREFIX_PATH</span><span class="o">}</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>To use this, build and install matrixserver into that directory:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Inside the matrixserver repository</span>
+cmake<span class="w"> </span>..<span class="w"> </span>-DCMAKE_INSTALL_PREFIX<span class="o">=</span>../install
+make<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>make<span class="w"> </span>install
+</pre></div>
+</div>
+<p>If the package is not found locally, CMake falls back to the normal system search paths.
+For a completely custom location, pass <code class="docutils literal notranslate"><span class="pre">-DCMAKE_PREFIX_PATH=/your/path</span></code> at configure time.</p>
+</section>
+<section id="boost-configuration">
+<h3>Boost Configuration<a class="headerlink" href="#boost-configuration" title="Link to this heading"></a></h3>
+<p>Boost libraries are configured globally with specific requirements:</p>
+<div class="highlight-cmake notranslate"><div class="highlight"><pre><span></span><span class="nb">set</span><span class="p">(</span><span class="s">Boost_FIND_QUIETLY</span><span class="w"> </span><span class="s">ON</span><span class="p">)</span>
+<span class="nb">set</span><span class="p">(</span><span class="s">Boost_USE_MULTITHREADED</span><span class="w"> </span><span class="s">TRUE</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">Boost_FIND_QUIETLY</span></code> flag reduces verbose output during configuration, while <code class="docutils literal notranslate"><span class="pre">Boost_USE_MULTITHREADED</span></code> ensures thread-safe Boost libraries are linked.</p>
+</section>
+</section>
+<section id="individual-application-configuration">
+<h2>Individual Application Configuration<a class="headerlink" href="#individual-application-configuration" title="Link to this heading"></a></h2>
+<p>Each application has its own <code class="docutils literal notranslate"><span class="pre">CMakeLists.txt</span></code> with standardized patterns:</p>
+<section id="typical-application-cmake-structure">
+<h3>Typical Application CMake Structure<a class="headerlink" href="#typical-application-cmake-structure" title="Link to this heading"></a></h3>
+<div class="highlight-cmake notranslate"><div class="highlight"><pre><span></span><span class="nb">project</span><span class="p">(</span><span class="s">applicationName</span><span class="p">)</span>
+
+<span class="c"># Find required packages</span>
+<span class="nb">find_package</span><span class="p">(</span><span class="s">Boost</span><span class="w"> </span><span class="s">1.58.0</span><span class="w"> </span><span class="s">REQUIRED</span><span class="w"> </span><span class="s">COMPONENTS</span><span class="w"> </span><span class="s">thread</span><span class="w"> </span><span class="s">log</span><span class="w"> </span><span class="s">system</span><span class="p">)</span>
+<span class="nb">include_directories</span><span class="p">(</span><span class="o">${</span><span class="nv">Boost_INCLUDE_DIRS</span><span class="o">}</span><span class="p">)</span>
+
+<span class="c"># Platform-specific library detection</span>
+<span class="nb">find_library</span><span class="p">(</span><span class="s">IMLIB2_FOUND</span><span class="w"> </span><span class="s2">&quot;Imlib2&quot;</span><span class="w"> </span><span class="s">PATHS</span><span class="w"> </span><span class="s2">&quot;/opt/homebrew/Cellar/imlib2/1.12.2/&quot;</span><span class="p">)</span>
+<span class="nb">IF</span><span class="p">(</span><span class="s">IMLIB2_FOUND</span><span class="p">)</span>
+<span class="w">    </span><span class="nb">MESSAGE</span><span class="p">(</span><span class="s2">&quot;\tIMLIB2 Found&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="nb">LINK_DIRECTORIES</span><span class="p">(</span><span class="s">/opt/homebrew/Cellar/imlib2/1.12.2/lib</span><span class="p">)</span>
+<span class="w">    </span><span class="nb">INCLUDE_DIRECTORIES</span><span class="p">(</span><span class="s">/opt/homebrew/Cellar/imlib2/1.12.2/include</span><span class="p">)</span>
+<span class="nb">ELSE</span><span class="p">(</span><span class="s">IMLIB2_FOUND</span><span class="p">)</span>
+<span class="w">    </span><span class="nb">MESSAGE</span><span class="p">(</span><span class="s">FATAL_ERROR</span><span class="w"> </span><span class="s2">&quot;\tIMLIB2 Not Found&quot;</span><span class="p">)</span>
+<span class="nb">ENDIF</span><span class="p">(</span><span class="s">IMLIB2_FOUND</span><span class="p">)</span>
+
+<span class="c"># Additional required packages</span>
+
+<span class="nb">find_package</span><span class="p">(</span><span class="s">matrixapplication</span><span class="w"> </span><span class="s">0.4</span><span class="w"> </span><span class="s">REQUIRED</span><span class="p">)</span>
+
+<span class="c"># Define executable and link libraries</span>
+<span class="nb">add_executable</span><span class="p">(</span><span class="s">applicationName</span><span class="w"> </span><span class="s">source_files...</span><span class="p">)</span>
+<span class="nb">target_link_libraries</span><span class="p">(</span><span class="s">applicationName</span>
+<span class="w">    </span><span class="s">matrixapplication::matrixapplication</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="library-detection-patterns">
+<h3>Library Detection Patterns<a class="headerlink" href="#library-detection-patterns" title="Link to this heading"></a></h3>
+<p><strong>Imlib2 Detection</strong>: The applications use custom detection for Imlib2, especially on macOS with Homebrew:</p>
+<div class="highlight-cmake notranslate"><div class="highlight"><pre><span></span><span class="nb">find_library</span><span class="p">(</span><span class="s">IMLIB2_FOUND</span><span class="w"> </span><span class="s2">&quot;Imlib2&quot;</span><span class="w"> </span><span class="s">PATHS</span><span class="w"> </span><span class="s2">&quot;/opt/homebrew/Cellar/imlib2/1.12.2/&quot;</span><span class="p">)</span>
+<span class="nb">IF</span><span class="p">(</span><span class="s">IMLIB2_FOUND</span><span class="p">)</span>
+<span class="w">    </span><span class="nb">MESSAGE</span><span class="p">(</span><span class="s2">&quot;\tIMLIB2 Found&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="nb">LINK_DIRECTORIES</span><span class="p">(</span><span class="s">/opt/homebrew/Cellar/imlib2/1.12.2/lib</span><span class="p">)</span>
+<span class="w">    </span><span class="nb">INCLUDE_DIRECTORIES</span><span class="p">(</span><span class="s">/opt/homebrew/Cellar/imlib2/1.12.2/include</span><span class="p">)</span>
+<span class="nb">ELSE</span><span class="p">(</span><span class="s">IMLIB2_FOUND</span><span class="p">)</span>
+<span class="w">    </span><span class="nb">MESSAGE</span><span class="p">(</span><span class="s">FATAL_ERROR</span><span class="w"> </span><span class="s2">&quot;\tIMLIB2 Not Found&quot;</span><span class="p">)</span>
+<span class="nb">ENDIF</span><span class="p">(</span><span class="s">IMLIB2_FOUND</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Framework Integration</strong>: All applications link against the matrixapplication library:</p>
+<div class="highlight-cmake notranslate"><div class="highlight"><pre><span></span><span class="nb">find_package</span><span class="p">(</span><span class="s">matrixapplication</span><span class="w"> </span><span class="s">0.4</span><span class="w"> </span><span class="s">REQUIRED</span><span class="p">)</span>
+<span class="nb">target_link_libraries</span><span class="p">(</span><span class="s">applicationName</span><span class="w"> </span><span class="s">matrixapplication::matrixapplication</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="application-selection">
+<h2>Application Selection<a class="headerlink" href="#application-selection" title="Link to this heading"></a></h2>
+<section id="conditional-compilation">
+<h3>Conditional Compilation<a class="headerlink" href="#conditional-compilation" title="Link to this heading"></a></h3>
+<p>The main CMakeLists.txt conditionally includes applications based on platform and configuration:</p>
+<div class="highlight-cmake notranslate"><div class="highlight"><pre><span></span><span class="c"># Always enabled applications</span>
+<span class="nb">add_subdirectory</span><span class="p">(</span><span class="s">Genetic</span><span class="p">)</span>
+<span class="nb">add_subdirectory</span><span class="p">(</span><span class="s">CubeTestApp</span><span class="p">)</span>
+<span class="nb">add_subdirectory</span><span class="p">(</span><span class="s">Breakout3D</span><span class="p">)</span>
+<span class="nb">add_subdirectory</span><span class="p">(</span><span class="s">Blackout3D</span><span class="p">)</span>
+<span class="nb">add_subdirectory</span><span class="p">(</span><span class="s">PixelFlow3</span><span class="p">)</span>
+<span class="nb">add_subdirectory</span><span class="p">(</span><span class="s">MatrixRain</span><span class="p">)</span>
+<span class="nb">add_subdirectory</span><span class="p">(</span><span class="s">Snake</span><span class="p">)</span>
+
+<span class="c"># Raspberry Pi specific applications</span>
+<span class="nb">IF</span><span class="p">(</span><span class="s">BUILD_RASPBERRYPI</span><span class="p">)</span>
+<span class="w">    </span><span class="nb">add_subdirectory</span><span class="p">(</span><span class="s">ImuTest</span><span class="p">)</span>
+<span class="w">    </span><span class="nb">add_subdirectory</span><span class="p">(</span><span class="s">PixelFlow</span><span class="p">)</span>
+<span class="w">    </span><span class="nb">add_subdirectory</span><span class="p">(</span><span class="s">PixelFlow2</span><span class="p">)</span>
+<span class="w">    </span><span class="nb">add_subdirectory</span><span class="p">(</span><span class="s">Rainbow</span><span class="p">)</span>
+<span class="nb">ENDIF</span><span class="p">()</span>
+
+<span class="c"># Picture application (currently disabled)</span>
+<span class="c">#add_subdirectory(Picture)</span>
+</pre></div>
+</div>
+<p>This configuration allows for:</p>
+<ul class="simple">
+<li><p><strong>Selective compilation</strong> of applications</p></li>
+<li><p><strong>Platform-appropriate builds</strong> (Raspberry Pi vs desktop)</p></li>
+<li><p><strong>Easy enabling/disabling</strong> of specific applications by uncommenting lines</p></li>
+</ul>
+</section>
+</section>
+<section id="package-generation">
+<h2>Package Generation<a class="headerlink" href="#package-generation" title="Link to this heading"></a></h2>
+<section id="cpack-configuration">
+<h3>CPack Configuration<a class="headerlink" href="#cpack-configuration" title="Link to this heading"></a></h3>
+<p>The project includes comprehensive CPack configuration for generating distribution packages:</p>
+<div class="highlight-cmake notranslate"><div class="highlight"><pre><span></span><span class="nb">set</span><span class="p">(</span><span class="s">CPACK_GENERATOR</span><span class="w"> </span><span class="s2">&quot;DEB&quot;</span><span class="p">)</span>
+<span class="nb">set</span><span class="p">(</span><span class="s">CPACK_PACKAGE_DESCRIPTION_SUMMARY</span><span class="w"> </span><span class="s2">&quot;LEDCube matrixserver example Applications&quot;</span><span class="p">)</span>
+<span class="nb">set</span><span class="p">(</span><span class="s">CPACK_PACKAGE_DESCRIPTION</span><span class="w"> </span><span class="s2">&quot;LEDCube matrixserver example Applications&quot;</span><span class="p">)</span>
+
+<span class="nb">set</span><span class="p">(</span><span class="s">CPACK_DEBIAN_PACKAGE_DEPENDS</span><span class="w"> </span><span class="s2">&quot;matrixserver&quot;</span><span class="p">)</span>
+<span class="nb">set</span><span class="p">(</span><span class="s">CPACK_PACKAGE_CONTACT</span><span class="w"> </span><span class="s2">&quot;Adrian maintainer@squarewave.io&quot;</span><span class="p">)</span>
+
+<span class="nb">set</span><span class="p">(</span><span class="s">CPACK_PACKAGE_VERSION_MAJOR</span><span class="w"> </span><span class="s2">&quot;0&quot;</span><span class="p">)</span>
+<span class="nb">set</span><span class="p">(</span><span class="s">CPACK_PACKAGE_VERSION_MINOR</span><span class="w"> </span><span class="s2">&quot;1&quot;</span><span class="p">)</span>
+<span class="nb">set</span><span class="p">(</span><span class="s">CPACK_PACKAGE_VERSION_PATCH</span><span class="w"> </span><span class="s2">&quot;0&quot;</span><span class="p">)</span>
+<span class="nb">set</span><span class="p">(</span><span class="s">CPACK_DEBIAN_FILE_NAME</span><span class="w"> </span><span class="s2">&quot;DEB-DEFAULT&quot;</span><span class="p">)</span>
+
+<span class="nb">include</span><span class="p">(</span><span class="s">CPack</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>This configuration:</p>
+<ul class="simple">
+<li><p><strong>Generates Debian packages</strong> (.deb files)</p></li>
+<li><p><strong>Declares dependency</strong> on the matrixserver package</p></li>
+<li><p><strong>Sets package metadata</strong> including version and maintainer</p></li>
+<li><p><strong>Uses default naming</strong> for generated package files</p></li>
+</ul>
+</section>
+</section>
+<section id="build-targets">
+<h2>Build Targets<a class="headerlink" href="#build-targets" title="Link to this heading"></a></h2>
+<section id="standard-targets">
+<h3>Standard Targets<a class="headerlink" href="#standard-targets" title="Link to this heading"></a></h3>
+<p>The CMake configuration provides several standard targets:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Build all enabled applications</span>
+make
+
+<span class="c1"># Build specific application</span>
+make<span class="w"> </span>cubetestapp
+make<span class="w"> </span>snake
+make<span class="w"> </span>pixelflow3
+
+<span class="c1"># Generate distribution package</span>
+make<span class="w"> </span>package
+
+<span class="c1"># Clean build artifacts</span>
+make<span class="w"> </span>clean
+</pre></div>
+</div>
+</section>
+</section>
+<section id="custom-build-options">
+<h2>Custom Build Options<a class="headerlink" href="#custom-build-options" title="Link to this heading"></a></h2>
+<section id="enabling-additional-applications">
+<h3>Enabling Additional Applications<a class="headerlink" href="#enabling-additional-applications" title="Link to this heading"></a></h3>
+<p>To enable commented-out applications, edit the main <code class="docutils literal notranslate"><span class="pre">CMakeLists.txt</span></code>:</p>
+<div class="highlight-cmake notranslate"><div class="highlight"><pre><span></span><span class="c"># Uncomment desired applications</span>
+<span class="nb">add_subdirectory</span><span class="p">(</span><span class="s">Genetic</span><span class="p">)</span>
+<span class="nb">add_subdirectory</span><span class="p">(</span><span class="s">Breakout3D</span><span class="p">)</span>
+<span class="nb">add_subdirectory</span><span class="p">(</span><span class="s">Blackout3D</span><span class="p">)</span>
+<span class="nb">add_subdirectory</span><span class="p">(</span><span class="s">Snake</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="custom-library-paths">
+<h3>Custom Library Paths<a class="headerlink" href="#custom-library-paths" title="Link to this heading"></a></h3>
+<p>For non-standard library installations, use CMake variables:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Use a locally installed matrixserver (alternative to ./matrixserver/install/)</span>
+cmake<span class="w"> </span>-DCMAKE_PREFIX_PATH<span class="o">=</span>/path/to/matrixserver/install<span class="w"> </span>..
+
+<span class="c1"># Custom Boost installation</span>
+cmake<span class="w"> </span>-DBOOST_ROOT<span class="o">=</span>/custom/boost/path<span class="w"> </span>..
+
+<span class="c1"># Custom Imlib2 installation</span>
+cmake<span class="w"> </span>-DIMLIB2_ROOT<span class="o">=</span>/custom/imlib2/path<span class="w"> </span>..
+
+<span class="c1"># Custom installation prefix</span>
+cmake<span class="w"> </span>-DCMAKE_INSTALL_PREFIX<span class="o">=</span>/custom/install/path<span class="w"> </span>..
+</pre></div>
+</div>
+</section>
+<section id="debug-configuration">
+<h3>Debug Configuration<a class="headerlink" href="#debug-configuration" title="Link to this heading"></a></h3>
+<p>For development and debugging:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Debug build with symbols</span>
+cmake<span class="w"> </span>-DCMAKE_BUILD_TYPE<span class="o">=</span>Debug<span class="w"> </span>..
+
+<span class="c1"># Verbose build output</span>
+make<span class="w"> </span><span class="nv">VERBOSE</span><span class="o">=</span><span class="m">1</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="build-system-maintenance">
+<h2>Build System Maintenance<a class="headerlink" href="#build-system-maintenance" title="Link to this heading"></a></h2>
+<section id="adding-new-applications">
+<h3>Adding New Applications<a class="headerlink" href="#adding-new-applications" title="Link to this heading"></a></h3>
+<p>To add a new application to the build system:</p>
+<ol class="arabic">
+<li><p><strong>Create application directory</strong> with source files</p></li>
+<li><p><strong>Add CMakeLists.txt</strong> following the standard pattern</p></li>
+<li><p><strong>Update main CMakeLists.txt</strong> to include the new subdirectory:</p>
+<div class="highlight-cmake notranslate"><div class="highlight"><pre><span></span><span class="nb">add_subdirectory</span><span class="p">(</span><span class="s">NewApplication</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+</ol>
+</section>
+<section id="dependency-updates">
+<h3>Dependency Updates<a class="headerlink" href="#dependency-updates" title="Link to this heading"></a></h3>
+<p>When updating dependencies:</p>
+<ol class="arabic simple">
+<li><p><strong>Update version requirements</strong> in <code class="docutils literal notranslate"><span class="pre">find_package</span></code> calls</p></li>
+<li><p><strong>Test compilation</strong> across all target platforms</p></li>
+<li><p><strong>Update documentation</strong> to reflect new requirements</p></li>
+</ol>
+<p>This CMake configuration provides a robust, cross-platform build system that automatically adapts to different environments while maintaining consistent behavior and easy customization.</p>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="installation.html" class="btn btn-neutral float-left" title="Installation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="architecture.html" class="btn btn-neutral float-right" title="Architecture" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Matrix Server Framework.
+      <span class="lastupdated">Last updated on May 12, 2026.
+      </span></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

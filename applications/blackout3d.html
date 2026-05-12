@@ -1,0 +1,618 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Blackout3D &mdash; LED Matrix Cube Examples Documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=01f34227"></script>
+      <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Breakout3D" href="breakout3d.html" />
+    <link rel="prev" title="Snake" href="snake.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            LED Matrix Cube Examples
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../overview.html">Overview</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../overview.html#project-purpose">Project Purpose</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview.html#architecture-overview">Architecture Overview</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../overview.html#framework-layer">Framework Layer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../overview.html#application-layer">Application Layer</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../overview.html#hardware-support">Hardware Support</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../overview.html#development-platforms">Development Platforms</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../overview.html#production-platforms">Production Platforms</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../overview.html#display-technologies">Display Technologies</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../overview.html#d-cube-displays">3D Cube Displays</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../overview.html#d-matrix-displays">2D Matrix Displays</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../overview.html#connection-architecture">Connection Architecture</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../overview.html#primary-connection-methods">Primary Connection Methods</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../overview.html#server-implementations">Server Implementations</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../overview.html#platform-specific-features">Platform-Specific Features</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../overview.html#raspberry-pi-detection">Raspberry Pi Detection</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../overview.html#cross-platform-components">Cross-Platform Components</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../overview.html#development-workflow">Development Workflow</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview.html#package-management">Package Management</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../installation.html#prerequisites">Prerequisites</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../installation.html#framework-dependency">Framework Dependency</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../installation.html#system-dependencies">System Dependencies</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../installation.html#build-system-requirements">Build System Requirements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation.html#platform-detection">Platform Detection</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../installation.html#raspberry-pi-detection">Raspberry Pi Detection</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../installation.html#enabled-applications-by-platform">Enabled Applications by Platform</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../installation.html#building-from-source">Building from Source</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../installation.html#basic-build-process">Basic Build Process</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../installation.html#build-configuration-options">Build Configuration Options</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../installation.html#dependency-resolution">Dependency Resolution</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../installation.html#cmake-package-discovery">CMake Package Discovery</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../installation.html#library-linking-configuration">Library Linking Configuration</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../installation.html#troubleshooting-build-issues">Troubleshooting Build Issues</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../installation.html#common-problems-and-solutions">Common Problems and Solutions</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../installation.html#deployment">Deployment</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../installation.html#package-generation">Package Generation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../installation.html#manual-installation">Manual Installation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../installation.html#running-applications">Running Applications</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../installation.html#server-requirement">Server Requirement</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../installation.html#application-execution">Application Execution</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../installation.html#connection-priority">Connection Priority</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../cmake.html">CMake Project Details</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../cmake.html#project-structure">Project Structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cmake.html#main-cmake-configuration">Main CMake Configuration</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../cmake.html#project-metadata">Project Metadata</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../cmake.html#global-build-settings">Global Build Settings</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../cmake.html#platform-detection">Platform Detection</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../cmake.html#raspberry-pi-detection">Raspberry Pi Detection</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../cmake.html#macos-specific-configuration">macOS-Specific Configuration</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../cmake.html#dependency-management">Dependency Management</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../cmake.html#matrixapplication-discovery">matrixapplication Discovery</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../cmake.html#boost-configuration">Boost Configuration</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../cmake.html#individual-application-configuration">Individual Application Configuration</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../cmake.html#typical-application-cmake-structure">Typical Application CMake Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../cmake.html#library-detection-patterns">Library Detection Patterns</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../cmake.html#application-selection">Application Selection</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../cmake.html#conditional-compilation">Conditional Compilation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../cmake.html#package-generation">Package Generation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../cmake.html#cpack-configuration">CPack Configuration</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../cmake.html#build-targets">Build Targets</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../cmake.html#standard-targets">Standard Targets</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../cmake.html#custom-build-options">Custom Build Options</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../cmake.html#enabling-additional-applications">Enabling Additional Applications</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../cmake.html#custom-library-paths">Custom Library Paths</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../cmake.html#debug-configuration">Debug Configuration</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../cmake.html#build-system-maintenance">Build System Maintenance</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../cmake.html#adding-new-applications">Adding New Applications</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../cmake.html#dependency-updates">Dependency Updates</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../architecture.html">Architecture</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../architecture.html#framework-architecture">Framework Architecture</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../architecture.html#application-base-classes">Application Base Classes</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../architecture.html#cubeapplication-class">CubeApplication Class</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../architecture.html#matrixapplication-class">MatrixApplication Class</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../architecture.html#specialized-application-types">Specialized Application Types</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../architecture.html#animation-and-effects-applications">Animation and Effects Applications</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../architecture.html#interactive-game-applications">Interactive Game Applications</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../architecture.html#framework-core-components">Framework Core Components</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../architecture.html#connection-management">Connection Management</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../architecture.html#frame-rate-control">Frame Rate Control</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../architecture.html#input-processing">Input Processing</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../architecture.html#hardware-abstraction">Hardware Abstraction</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../architecture.html#server-implementation-abstraction">Server Implementation Abstraction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../architecture.html#display-abstraction">Display Abstraction</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../architecture.html#design-patterns">Design Patterns</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../architecture.html#application-lifecycle-pattern">Application Lifecycle Pattern</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../architecture.html#resource-management-pattern">Resource Management Pattern</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../architecture.html#state-management-pattern">State Management Pattern</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../architecture.html#performance-optimization">Performance Optimization</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../architecture.html#frame-rate-optimization">Frame Rate Optimization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../architecture.html#memory-optimization">Memory Optimization</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../architecture.html#real-world-application-patterns">Real-World Application Patterns</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../architecture.html#game-state-management-breakout3d">Game State Management (Breakout3D)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../architecture.html#particle-system-architecture-pixelflow">Particle System Architecture (PixelFlow)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../architecture.html#multi-player-game-management-snake-breakout3d">Multi-Player Game Management (Snake/Breakout3D)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../architecture.html#physics-and-collision-systems-breakout3d">Physics and Collision Systems (Breakout3D)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../architecture.html#advanced-input-handling">Advanced Input Handling</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../architecture.html#high-score-and-persistence-breakout3d-snake">High Score and Persistence (Breakout3D/Snake)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../parameters.html">Dynamic Parameter System</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../parameters.html#core-concepts">Core Concepts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../parameters.html#how-to-use">How to Use</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../parameters.html#register-parameters-in-the-constructor">1. Register Parameters in the Constructor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../parameters.html#read-parameters-in-your-loop">2. Read Parameters in Your Loop</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../parameters.html#supported-parameter-types">Supported Parameter Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../parameters.html#presets">Presets</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../parameters.html#network-communication">Network Communication</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Applications</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="index.html#application-overview">Application Overview</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="index.html#d-cube-applications">3D Cube Applications</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="cubetestapp.html">CubeTestApp</a></li>
+<li class="toctree-l4"><a class="reference internal" href="snake.html">Snake</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Blackout3D</a></li>
+<li class="toctree-l4"><a class="reference internal" href="breakout3d.html">Breakout3D</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#d-matrix-applications">2D Matrix Applications</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#animation-and-effects-applications">Animation and Effects Applications</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="pixelflow.html">PixelFlow</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#hardware-integration">Hardware Integration</a><ul class="simple">
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#application-selection-guide">Application Selection Guide</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="index.html#for-3d-led-cube-hardware">For 3D LED Cube Hardware</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#for-2d-matrix-displays">For 2D Matrix Displays</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#for-effects-and-animation">For Effects and Animation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#platform-compatibility">Platform Compatibility</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="index.html#all-platforms-desktop-raspberry-pi">All Platforms (Desktop + Raspberry Pi)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#raspberry-pi-only">Raspberry Pi Only</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#build-configuration">Build Configuration</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#common-application-features">Common Application Features</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="index.html#input-handling">Input Handling</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#frame-rate-management">Frame Rate Management</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#performance-tuning">Performance Tuning</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#development-patterns">Development Patterns</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="index.html#application-structure">Application Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#main-loop-pattern">Main Loop Pattern</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../api/index.html">API Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../api/index.html#framework-base-classes">Framework Base Classes</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../api/index.html#cubeapplication-class">CubeApplication Class</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api/index.html#matrixapplication-class">MatrixApplication Class</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../api/index.html#common-patterns-and-utilities">Common Patterns and Utilities</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../api/index.html#programming-patterns">Programming Patterns</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api/index.html#input-and-control-systems">Input and Control Systems</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api/index.html#color-and-visual-systems">Color and Visual Systems</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../api/index.html#quick-reference">Quick Reference</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../api/index.html#essential-classes">Essential Classes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api/index.html#essential-data-types">Essential Data Types</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../api/index.html#application-lifecycle">Application Lifecycle</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../api/index.html#standard-application-pattern">Standard Application Pattern</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api/index.html#frame-rate-management">Frame Rate Management</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../api/index.html#connection-architecture">Connection Architecture</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../api/index.html#server-communication">Server Communication</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../api/index.html#performance-considerations">Performance Considerations</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../api/index.html#optimization-techniques">Optimization Techniques</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../api/index.html#error-handling">Error Handling</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../api/index.html#connection-failures">Connection Failures</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api/index.html#resource-management">Resource Management</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">LED Matrix Cube Examples</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Applications</a></li>
+      <li class="breadcrumb-item active">Blackout3D</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/applications/blackout3d.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="blackout3d">
+<h1>Blackout3D<a class="headerlink" href="#blackout3d" title="Link to this heading"></a></h1>
+<p><strong>Blackout3D</strong> is a minimal 3D application template that serves as the perfect starting point for developing custom LED cube applications. It demonstrates the essential structure and methods required for 3D cube rendering.</p>
+<section id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Link to this heading"></a></h2>
+<p>Blackout3D provides a clean, minimal template that:</p>
+<ul class="simple">
+<li><p>Inherits from <code class="docutils literal notranslate"><span class="pre">CubeApplication</span></code> for 3D volumetric rendering</p></li>
+<li><p>Implements the basic application loop pattern</p></li>
+<li><p>Connects to matrixserver at 20 FPS for minimal load</p></li>
+<li><p>Serves as a foundation for custom 3D applications</p></li>
+</ul>
+<p>This application is ideal for:</p>
+<ul class="simple">
+<li><p><strong>Learning</strong> the basic cube application structure</p></li>
+<li><p><strong>Starting</strong> new 3D application development</p></li>
+<li><p><strong>Testing</strong> basic connectivity and rendering setup</p></li>
+<li><p><strong>Understanding</strong> the minimal requirements for cube applications</p></li>
+</ul>
+</section>
+<section id="implementation">
+<h2>Implementation<a class="headerlink" href="#implementation" title="Link to this heading"></a></h2>
+<section id="core-structure">
+<h3>Core Structure<a class="headerlink" href="#core-structure" title="Link to this heading"></a></h3>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="c1">// Blackout3D.h</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;CubeApplication.h&quot;</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">Blackout3D</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">CubeApplication</span><span class="w"> </span><span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+<span class="w">    </span><span class="n">Blackout3D</span><span class="p">();</span>
+<span class="w">    </span><span class="k">virtual</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="nf">loop</span><span class="p">()</span><span class="w"> </span><span class="k">override</span><span class="p">;</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+</section>
+<section id="application-loop">
+<h3>Application Loop<a class="headerlink" href="#application-loop" title="Link to this heading"></a></h3>
+<p>The implementation demonstrates the minimal application loop:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="c1">// Blackout3D.cpp</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Blackout3D.h&quot;</span>
+
+<span class="n">Blackout3D</span><span class="o">::</span><span class="n">Blackout3D</span><span class="p">()</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">CubeApplication</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;cube10.local&quot;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// Constructor: 20 FPS, connect to specific host</span>
+<span class="w">    </span><span class="c1">// Add initialization code here</span>
+<span class="p">}</span>
+
+<span class="kt">bool</span><span class="w"> </span><span class="n">Blackout3D</span><span class="o">::</span><span class="n">loop</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">clear</span><span class="p">();</span><span class="w">                    </span><span class="c1">// Clear all voxels from previous frame</span>
+
+<span class="w">    </span><span class="c1">// Add your custom 3D rendering logic here:</span>
+<span class="w">    </span><span class="c1">// setPixel3D(Vector3i(x, y, z), Color::red());</span>
+<span class="w">    </span><span class="c1">// drawLine3D(start, end, Color::blue());</span>
+<span class="w">    </span><span class="c1">// drawText(front, pos, Color::white(), &quot;Hello&quot;);</span>
+
+<span class="w">    </span><span class="n">render</span><span class="p">();</span><span class="w">                   </span><span class="c1">// Send frame to server</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span><span class="w">                </span><span class="c1">// Continue running (false to exit)</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="configuration">
+<h2>Configuration<a class="headerlink" href="#configuration" title="Link to this heading"></a></h2>
+<section id="frame-rate">
+<h3>Frame Rate<a class="headerlink" href="#frame-rate" title="Link to this heading"></a></h3>
+<p>Blackout3D runs at <strong>20 FPS</strong> to minimize system load while providing a responsive development environment:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">Blackout3D</span><span class="p">()</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">CubeApplication</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;cube10.local&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="connection">
+<h3>Connection<a class="headerlink" href="#connection" title="Link to this heading"></a></h3>
+<p>By default connects to <code class="docutils literal notranslate"><span class="pre">cube10.local</span></code>. Modify the host parameter to connect to different server instances:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="c1">// Local development</span>
+<span class="n">Blackout3D</span><span class="p">()</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">CubeApplication</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;localhost&quot;</span><span class="p">)</span>
+
+<span class="c1">// Specific IP address</span>
+<span class="n">Blackout3D</span><span class="p">()</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">CubeApplication</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;192.168.1.100&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="development-guide">
+<h2>Development Guide<a class="headerlink" href="#development-guide" title="Link to this heading"></a></h2>
+<section id="starting-a-new-application">
+<h3>Starting a New Application<a class="headerlink" href="#starting-a-new-application" title="Link to this heading"></a></h3>
+<ol class="arabic">
+<li><p><strong>Copy the Blackout3D files</strong> as a template:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cp<span class="w"> </span>-r<span class="w"> </span>Blackout3D/<span class="w"> </span>MyNewApp/
+<span class="c1"># Rename files and classes appropriately</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Modify the constructor</strong> for your needs:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">MyNewApp</span><span class="p">()</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">CubeApplication</span><span class="p">(</span><span class="mi">30</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;localhost&quot;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// Initialize your application state</span>
+<span class="w">    </span><span class="n">initializeGameObjects</span><span class="p">();</span>
+<span class="w">    </span><span class="n">loadResources</span><span class="p">();</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Implement your rendering logic</strong> in the loop method:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">bool</span><span class="w"> </span><span class="nf">MyNewApp::loop</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">clear</span><span class="p">();</span>
+
+<span class="w">    </span><span class="c1">// Update application state</span>
+<span class="w">    </span><span class="n">updatePhysics</span><span class="p">();</span>
+<span class="w">    </span><span class="n">handleInput</span><span class="p">();</span>
+
+<span class="w">    </span><span class="c1">// Render 3D content</span>
+<span class="w">    </span><span class="n">drawGameObjects</span><span class="p">();</span>
+<span class="w">    </span><span class="n">drawUI</span><span class="p">();</span>
+
+<span class="w">    </span><span class="n">render</span><span class="p">();</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</li>
+</ol>
+</section>
+<section id="common-extensions">
+<h3>Common Extensions<a class="headerlink" href="#common-extensions" title="Link to this heading"></a></h3>
+<p><strong>Adding Joystick Input:</strong></p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">MyNewApp</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">CubeApplication</span><span class="w"> </span><span class="p">{</span>
+<span class="k">private</span><span class="o">:</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">Joystick</span><span class="o">*&gt;</span><span class="w"> </span><span class="n">joysticks</span><span class="p">;</span>
+
+<span class="k">public</span><span class="o">:</span>
+<span class="w">    </span><span class="n">MyNewApp</span><span class="p">()</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">CubeApplication</span><span class="p">(</span><span class="mi">30</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;localhost&quot;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">joysticks</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">Joystick</span><span class="p">(</span><span class="mi">0</span><span class="p">));</span><span class="w">  </span><span class="c1">// Player 1</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="n">loop</span><span class="p">()</span><span class="w"> </span><span class="k">override</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">clear</span><span class="p">();</span>
+
+<span class="w">        </span><span class="c1">// Handle input</span>
+<span class="w">        </span><span class="k">for</span><span class="p">(</span><span class="k">auto</span><span class="w"> </span><span class="n">joystick</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">joysticks</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">if</span><span class="p">(</span><span class="n">joystick</span><span class="o">-&gt;</span><span class="n">getButtonPress</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="c1">// Handle button press</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">            </span><span class="n">joystick</span><span class="o">-&gt;</span><span class="n">clearAllButtonPresses</span><span class="p">();</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="n">render</span><span class="p">();</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p><strong>Adding 3D Objects:</strong></p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">bool</span><span class="w"> </span><span class="nf">loop</span><span class="p">()</span><span class="w"> </span><span class="k">override</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">clear</span><span class="p">();</span>
+
+<span class="w">    </span><span class="c1">// Draw a 3D line</span>
+<span class="w">    </span><span class="n">drawLine3D</span><span class="p">(</span><span class="n">Vector3i</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">),</span><span class="w"> </span><span class="n">Vector3i</span><span class="p">(</span><span class="mi">63</span><span class="p">,</span><span class="w"> </span><span class="mi">63</span><span class="p">,</span><span class="w"> </span><span class="mi">63</span><span class="p">),</span><span class="w"> </span><span class="n">Color</span><span class="o">::</span><span class="n">red</span><span class="p">());</span>
+
+<span class="w">    </span><span class="c1">// Set individual voxels</span>
+<span class="w">    </span><span class="n">setPixel3D</span><span class="p">(</span><span class="n">Vector3i</span><span class="p">(</span><span class="mi">32</span><span class="p">,</span><span class="w"> </span><span class="mi">32</span><span class="p">,</span><span class="w"> </span><span class="mi">32</span><span class="p">),</span><span class="w"> </span><span class="n">Color</span><span class="o">::</span><span class="n">blue</span><span class="p">());</span>
+
+<span class="w">    </span><span class="c1">// Draw text on cube faces</span>
+<span class="w">    </span><span class="n">drawText</span><span class="p">(</span><span class="n">ScreenNumber</span><span class="o">::</span><span class="n">front</span><span class="p">,</span><span class="w"> </span><span class="n">Vector2i</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="w"> </span><span class="mi">10</span><span class="p">),</span>
+<span class="w">            </span><span class="n">Color</span><span class="o">::</span><span class="n">white</span><span class="p">(),</span><span class="w"> </span><span class="s">&quot;Hello Cube!&quot;</span><span class="p">);</span>
+
+<span class="w">    </span><span class="n">render</span><span class="p">();</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>Adding Animation:</strong></p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">bool</span><span class="w"> </span><span class="nf">loop</span><span class="p">()</span><span class="w"> </span><span class="k">override</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">static</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">counter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">    </span><span class="k">static</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="n">time</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.0f</span><span class="p">;</span>
+
+<span class="w">    </span><span class="n">clear</span><span class="p">();</span>
+
+<span class="w">    </span><span class="c1">// Animated rotation</span>
+<span class="w">    </span><span class="n">time</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="mf">0.1f</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">32</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">20</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">cos</span><span class="p">(</span><span class="n">time</span><span class="p">);</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">32</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">20</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">sin</span><span class="p">(</span><span class="n">time</span><span class="p">);</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">z</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">32</span><span class="p">;</span>
+
+<span class="w">    </span><span class="n">setPixel3D</span><span class="p">(</span><span class="n">Vector3i</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="p">,</span><span class="w"> </span><span class="n">z</span><span class="p">),</span><span class="w"> </span><span class="n">Color</span><span class="o">::</span><span class="n">red</span><span class="p">());</span>
+
+<span class="w">    </span><span class="n">render</span><span class="p">();</span>
+<span class="w">    </span><span class="n">counter</span><span class="o">++</span><span class="p">;</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="building-and-running">
+<h2>Building and Running<a class="headerlink" href="#building-and-running" title="Link to this heading"></a></h2>
+<section id="build-process">
+<h3>Build Process<a class="headerlink" href="#build-process" title="Link to this heading"></a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Build Blackout3D specifically</span>
+mkdir<span class="w"> </span>-p<span class="w"> </span>build<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>build
+cmake<span class="w"> </span>..<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>make<span class="w"> </span>blackout3d
+
+<span class="c1"># Run the application</span>
+./blackout3d
+</pre></div>
+</div>
+</section>
+<section id="prerequisites">
+<h3>Prerequisites<a class="headerlink" href="#prerequisites" title="Link to this heading"></a></h3>
+<ol class="arabic">
+<li><p><strong>MatrixServer Running</strong>: Start appropriate server before launching:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># For development</span>
+/path/to/matrixserver/build/server_simulator
+
+<span class="c1"># For hardware</span>
+/path/to/matrixserver/build/server_FPGA
+</pre></div>
+</div>
+</li>
+<li><p><strong>Dependencies Installed</strong>: Ensure matrixapplication library is available</p></li>
+</ol>
+</section>
+</section>
+<section id="troubleshooting">
+<h2>Troubleshooting<a class="headerlink" href="#troubleshooting" title="Link to this heading"></a></h2>
+<section id="connection-issues">
+<h3>Connection Issues<a class="headerlink" href="#connection-issues" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><strong>Server not running</strong>: Start matrixserver before launching application</p></li>
+<li><p><strong>Wrong host</strong>: Verify the hostname/IP in the constructor</p></li>
+<li><p><strong>Port conflicts</strong>: Check that port 2017 is available</p></li>
+</ul>
+</section>
+<section id="performance-issues">
+<h3>Performance Issues<a class="headerlink" href="#performance-issues" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><strong>High CPU usage</strong>: Blackout3D runs at low 20 FPS by design</p></li>
+<li><p><strong>Slow rendering</strong>: Check server implementation performance</p></li>
+<li><p><strong>Memory leaks</strong>: Ensure proper cleanup in destructor if adding dynamic objects</p></li>
+</ul>
+</section>
+</section>
+<section id="next-steps">
+<h2>Next Steps<a class="headerlink" href="#next-steps" title="Link to this heading"></a></h2>
+<p>After mastering Blackout3D, explore more complex applications:</p>
+<ul class="simple">
+<li><p><strong>CubeTestApp</strong> - See comprehensive 3D rendering examples</p></li>
+<li><p><strong>Snake</strong> - Learn game state management and input handling</p></li>
+<li><p><strong>Breakout3D</strong> - Study physics and collision detection</p></li>
+<li><p><strong>PixelFlow3</strong> - Examine particle system implementation</p></li>
+</ul>
+<p>The minimal nature of Blackout3D makes it the ideal foundation for understanding cube application development and serves as a clean starting point for any custom 3D LED cube project.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="snake.html" class="btn btn-neutral float-left" title="Snake" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="breakout3d.html" class="btn btn-neutral float-right" title="Breakout3D" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Matrix Server Framework.
+      <span class="lastupdated">Last updated on May 12, 2026.
+      </span></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

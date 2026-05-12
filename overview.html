@@ -1,0 +1,531 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Overview &mdash; LED Matrix Cube Examples Documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=9edc463e" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=01f34227"></script>
+      <script src="_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Installation" href="installation.html" />
+    <link rel="prev" title="LED Matrix Cube Examples" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            LED Matrix Cube Examples
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Overview</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#project-purpose">Project Purpose</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#architecture-overview">Architecture Overview</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#framework-layer">Framework Layer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#application-layer">Application Layer</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#hardware-support">Hardware Support</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#development-platforms">Development Platforms</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#production-platforms">Production Platforms</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#display-technologies">Display Technologies</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#d-cube-displays">3D Cube Displays</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#d-matrix-displays">2D Matrix Displays</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#connection-architecture">Connection Architecture</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#primary-connection-methods">Primary Connection Methods</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#server-implementations">Server Implementations</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#platform-specific-features">Platform-Specific Features</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#raspberry-pi-detection">Raspberry Pi Detection</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#cross-platform-components">Cross-Platform Components</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#development-workflow">Development Workflow</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#package-management">Package Management</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#prerequisites">Prerequisites</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="installation.html#framework-dependency">Framework Dependency</a></li>
+<li class="toctree-l3"><a class="reference internal" href="installation.html#system-dependencies">System Dependencies</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#build-system-requirements">Build System Requirements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#platform-detection">Platform Detection</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="installation.html#raspberry-pi-detection">Raspberry Pi Detection</a></li>
+<li class="toctree-l3"><a class="reference internal" href="installation.html#enabled-applications-by-platform">Enabled Applications by Platform</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#building-from-source">Building from Source</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="installation.html#basic-build-process">Basic Build Process</a></li>
+<li class="toctree-l3"><a class="reference internal" href="installation.html#build-configuration-options">Build Configuration Options</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#dependency-resolution">Dependency Resolution</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="installation.html#cmake-package-discovery">CMake Package Discovery</a></li>
+<li class="toctree-l3"><a class="reference internal" href="installation.html#library-linking-configuration">Library Linking Configuration</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#troubleshooting-build-issues">Troubleshooting Build Issues</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="installation.html#common-problems-and-solutions">Common Problems and Solutions</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#deployment">Deployment</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="installation.html#package-generation">Package Generation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="installation.html#manual-installation">Manual Installation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#running-applications">Running Applications</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="installation.html#server-requirement">Server Requirement</a></li>
+<li class="toctree-l3"><a class="reference internal" href="installation.html#application-execution">Application Execution</a></li>
+<li class="toctree-l3"><a class="reference internal" href="installation.html#connection-priority">Connection Priority</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="cmake.html">CMake Project Details</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="cmake.html#project-structure">Project Structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cmake.html#main-cmake-configuration">Main CMake Configuration</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cmake.html#project-metadata">Project Metadata</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cmake.html#global-build-settings">Global Build Settings</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="cmake.html#platform-detection">Platform Detection</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cmake.html#raspberry-pi-detection">Raspberry Pi Detection</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cmake.html#macos-specific-configuration">macOS-Specific Configuration</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="cmake.html#dependency-management">Dependency Management</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cmake.html#matrixapplication-discovery">matrixapplication Discovery</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cmake.html#boost-configuration">Boost Configuration</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="cmake.html#individual-application-configuration">Individual Application Configuration</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cmake.html#typical-application-cmake-structure">Typical Application CMake Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cmake.html#library-detection-patterns">Library Detection Patterns</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="cmake.html#application-selection">Application Selection</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cmake.html#conditional-compilation">Conditional Compilation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="cmake.html#package-generation">Package Generation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cmake.html#cpack-configuration">CPack Configuration</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="cmake.html#build-targets">Build Targets</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cmake.html#standard-targets">Standard Targets</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="cmake.html#custom-build-options">Custom Build Options</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cmake.html#enabling-additional-applications">Enabling Additional Applications</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cmake.html#custom-library-paths">Custom Library Paths</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cmake.html#debug-configuration">Debug Configuration</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="cmake.html#build-system-maintenance">Build System Maintenance</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cmake.html#adding-new-applications">Adding New Applications</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cmake.html#dependency-updates">Dependency Updates</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="architecture.html">Architecture</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="architecture.html#framework-architecture">Framework Architecture</a></li>
+<li class="toctree-l2"><a class="reference internal" href="architecture.html#application-base-classes">Application Base Classes</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="architecture.html#cubeapplication-class">CubeApplication Class</a></li>
+<li class="toctree-l3"><a class="reference internal" href="architecture.html#matrixapplication-class">MatrixApplication Class</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="architecture.html#specialized-application-types">Specialized Application Types</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="architecture.html#animation-and-effects-applications">Animation and Effects Applications</a></li>
+<li class="toctree-l3"><a class="reference internal" href="architecture.html#interactive-game-applications">Interactive Game Applications</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="architecture.html#framework-core-components">Framework Core Components</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="architecture.html#connection-management">Connection Management</a></li>
+<li class="toctree-l3"><a class="reference internal" href="architecture.html#frame-rate-control">Frame Rate Control</a></li>
+<li class="toctree-l3"><a class="reference internal" href="architecture.html#input-processing">Input Processing</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="architecture.html#hardware-abstraction">Hardware Abstraction</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="architecture.html#server-implementation-abstraction">Server Implementation Abstraction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="architecture.html#display-abstraction">Display Abstraction</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="architecture.html#design-patterns">Design Patterns</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="architecture.html#application-lifecycle-pattern">Application Lifecycle Pattern</a></li>
+<li class="toctree-l3"><a class="reference internal" href="architecture.html#resource-management-pattern">Resource Management Pattern</a></li>
+<li class="toctree-l3"><a class="reference internal" href="architecture.html#state-management-pattern">State Management Pattern</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="architecture.html#performance-optimization">Performance Optimization</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="architecture.html#frame-rate-optimization">Frame Rate Optimization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="architecture.html#memory-optimization">Memory Optimization</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="architecture.html#real-world-application-patterns">Real-World Application Patterns</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="architecture.html#game-state-management-breakout3d">Game State Management (Breakout3D)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="architecture.html#particle-system-architecture-pixelflow">Particle System Architecture (PixelFlow)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="architecture.html#multi-player-game-management-snake-breakout3d">Multi-Player Game Management (Snake/Breakout3D)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="architecture.html#physics-and-collision-systems-breakout3d">Physics and Collision Systems (Breakout3D)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="architecture.html#advanced-input-handling">Advanced Input Handling</a></li>
+<li class="toctree-l3"><a class="reference internal" href="architecture.html#high-score-and-persistence-breakout3d-snake">High Score and Persistence (Breakout3D/Snake)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="parameters.html">Dynamic Parameter System</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="parameters.html#core-concepts">Core Concepts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parameters.html#how-to-use">How to Use</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="parameters.html#register-parameters-in-the-constructor">1. Register Parameters in the Constructor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="parameters.html#read-parameters-in-your-loop">2. Read Parameters in Your Loop</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="parameters.html#supported-parameter-types">Supported Parameter Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parameters.html#presets">Presets</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parameters.html#network-communication">Network Communication</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="applications/index.html">Applications</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="applications/index.html#application-overview">Application Overview</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="applications/index.html#d-cube-applications">3D Cube Applications</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="applications/cubetestapp.html">CubeTestApp</a></li>
+<li class="toctree-l4"><a class="reference internal" href="applications/snake.html">Snake</a></li>
+<li class="toctree-l4"><a class="reference internal" href="applications/blackout3d.html">Blackout3D</a></li>
+<li class="toctree-l4"><a class="reference internal" href="applications/breakout3d.html">Breakout3D</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="applications/index.html#d-matrix-applications">2D Matrix Applications</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="applications/index.html#animation-and-effects-applications">Animation and Effects Applications</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="applications/pixelflow.html">PixelFlow</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="applications/index.html#hardware-integration">Hardware Integration</a><ul class="simple">
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="applications/index.html#application-selection-guide">Application Selection Guide</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="applications/index.html#for-3d-led-cube-hardware">For 3D LED Cube Hardware</a></li>
+<li class="toctree-l3"><a class="reference internal" href="applications/index.html#for-2d-matrix-displays">For 2D Matrix Displays</a></li>
+<li class="toctree-l3"><a class="reference internal" href="applications/index.html#for-effects-and-animation">For Effects and Animation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="applications/index.html#platform-compatibility">Platform Compatibility</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="applications/index.html#all-platforms-desktop-raspberry-pi">All Platforms (Desktop + Raspberry Pi)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="applications/index.html#raspberry-pi-only">Raspberry Pi Only</a></li>
+<li class="toctree-l3"><a class="reference internal" href="applications/index.html#build-configuration">Build Configuration</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="applications/index.html#common-application-features">Common Application Features</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="applications/index.html#input-handling">Input Handling</a></li>
+<li class="toctree-l3"><a class="reference internal" href="applications/index.html#frame-rate-management">Frame Rate Management</a></li>
+<li class="toctree-l3"><a class="reference internal" href="applications/index.html#performance-tuning">Performance Tuning</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="applications/index.html#development-patterns">Development Patterns</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="applications/index.html#application-structure">Application Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="applications/index.html#main-loop-pattern">Main Loop Pattern</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="api/index.html">API Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="api/index.html#framework-base-classes">Framework Base Classes</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api/index.html#cubeapplication-class">CubeApplication Class</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/index.html#matrixapplication-class">MatrixApplication Class</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="api/index.html#common-patterns-and-utilities">Common Patterns and Utilities</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api/index.html#programming-patterns">Programming Patterns</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/index.html#input-and-control-systems">Input and Control Systems</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/index.html#color-and-visual-systems">Color and Visual Systems</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="api/index.html#quick-reference">Quick Reference</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api/index.html#essential-classes">Essential Classes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/index.html#essential-data-types">Essential Data Types</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="api/index.html#application-lifecycle">Application Lifecycle</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api/index.html#standard-application-pattern">Standard Application Pattern</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/index.html#frame-rate-management">Frame Rate Management</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="api/index.html#connection-architecture">Connection Architecture</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api/index.html#server-communication">Server Communication</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="api/index.html#performance-considerations">Performance Considerations</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api/index.html#optimization-techniques">Optimization Techniques</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="api/index.html#error-handling">Error Handling</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api/index.html#connection-failures">Connection Failures</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/index.html#resource-management">Resource Management</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">LED Matrix Cube Examples</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Overview</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/overview.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="overview">
+<h1>Overview<a class="headerlink" href="#overview" title="Link to this heading"></a></h1>
+<p>The LED Matrix Cube Examples project provides a comprehensive collection of demonstration applications for the matrixserver framework. These examples showcase the capabilities of 3D LED cube displays and 2D matrix panels through interactive games, visualizations, and effects.</p>
+<section id="project-purpose">
+<h2>Project Purpose<a class="headerlink" href="#project-purpose" title="Link to this heading"></a></h2>
+<p>The example applications serve multiple purposes:</p>
+<p><strong>Educational</strong>: Demonstrate proper usage patterns and best practices for the matrixserver framework
+<strong>Functional</strong>: Provide ready-to-use applications for LED matrix displays
+<strong>Reference</strong>: Serve as starting points for custom application development
+<strong>Testing</strong>: Validate framework functionality across different platforms and hardware configurations</p>
+</section>
+<section id="architecture-overview">
+<h2>Architecture Overview<a class="headerlink" href="#architecture-overview" title="Link to this heading"></a></h2>
+<p>The project follows a layered architecture that separates application logic from hardware interfacing:</p>
+<section id="framework-layer">
+<h3>Framework Layer<a class="headerlink" href="#framework-layer" title="Link to this heading"></a></h3>
+<p>The matrixserver framework provides the core infrastructure:</p>
+<ul class="simple">
+<li><p><strong>Connection Management</strong>: Handles communication with various server implementations</p></li>
+<li><p><strong>Hardware Abstraction</strong>: Unified API for different display technologies</p></li>
+<li><p><strong>Timing Control</strong>: Frame rate regulation and animation timing</p></li>
+<li><p><strong>Input Processing</strong>: Standardized joystick and sensor input handling</p></li>
+</ul>
+</section>
+<section id="application-layer">
+<h3>Application Layer<a class="headerlink" href="#application-layer" title="Link to this heading"></a></h3>
+<p>Example applications build on two main base classes:</p>
+<dl class="simple">
+<dt><strong>CubeApplication</strong></dt><dd><p>For 3D volumetric applications that render into a cubic LED matrix:</p>
+<ul class="simple">
+<li><p>3D coordinate system with (x, y, z) addressing</p></li>
+<li><p>Volumetric pixel manipulation</p></li>
+<li><p>3D line drawing and text rendering on cube faces</p></li>
+<li><p>Edge detection and surface navigation</p></li>
+</ul>
+</dd>
+<dt><strong>MatrixApplication</strong></dt><dd><p>For traditional 2D matrix displays:</p>
+<ul class="simple">
+<li><p>2D coordinate system with (x, y) addressing</p></li>
+<li><p>Pixel-level control of flat LED panels</p></li>
+<li><p>Screen-based rendering for multiple panel configurations</p></li>
+</ul>
+</dd>
+</dl>
+</section>
+</section>
+<section id="hardware-support">
+<h2>Hardware Support<a class="headerlink" href="#hardware-support" title="Link to this heading"></a></h2>
+<p>The examples are designed to work across multiple hardware platforms:</p>
+<section id="development-platforms">
+<h3>Development Platforms<a class="headerlink" href="#development-platforms" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><strong>Desktop Systems</strong>: macOS, Linux, Windows with software simulator</p></li>
+<li><p><strong>Cross-compilation</strong>: Support for embedded targets</p></li>
+</ul>
+</section>
+<section id="production-platforms">
+<h3>Production Platforms<a class="headerlink" href="#production-platforms" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><strong>Raspberry Pi</strong>: GPIO-based matrix panels, SPI interfaces</p></li>
+<li><p><strong>FPGA Systems</strong>: Custom hardware with FTDI USB interfaces</p></li>
+<li><p><strong>Dedicated Controllers</strong>: Purpose-built LED matrix controllers</p></li>
+</ul>
+</section>
+</section>
+<section id="display-technologies">
+<h2>Display Technologies<a class="headerlink" href="#display-technologies" title="Link to this heading"></a></h2>
+<p>The framework and examples support various LED matrix configurations:</p>
+<section id="d-cube-displays">
+<h3>3D Cube Displays<a class="headerlink" href="#d-cube-displays" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><strong>Volumetric Matrices</strong>: True 3D pixel arrays forming cubic displays</p></li>
+<li><p><strong>Multi-sided Cubes</strong>: Six separate 2D panels arranged in cube formation</p></li>
+<li><p><strong>Custom Geometries</strong>: Adaptable to non-cubic 3D arrangements</p></li>
+</ul>
+</section>
+<section id="d-matrix-displays">
+<h3>2D Matrix Displays<a class="headerlink" href="#d-matrix-displays" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><strong>Single Panels</strong>: Individual LED matrix displays</p></li>
+<li><p><strong>Tiled Arrays</strong>: Multiple panels arranged in larger displays</p></li>
+<li><p><strong>Various Resolutions</strong>: From small 8x8 matrices to large 64x64+ displays</p></li>
+</ul>
+</section>
+</section>
+<section id="connection-architecture">
+<h2>Connection Architecture<a class="headerlink" href="#connection-architecture" title="Link to this heading"></a></h2>
+<p>The examples connect to matrixserver instances through multiple transport mechanisms:</p>
+<section id="primary-connection-methods">
+<h3>Primary Connection Methods<a class="headerlink" href="#primary-connection-methods" title="Link to this heading"></a></h3>
+<dl class="simple">
+<dt><strong>TCP Network</strong></dt><dd><ul class="simple">
+<li><p>Default connection method</p></li>
+<li><p>Supports remote server instances</p></li>
+<li><p>Cross-platform compatibility</p></li>
+<li><p>Default port: 2017</p></li>
+</ul>
+</dd>
+<dt><strong>IPC (Inter-Process Communication)</strong></dt><dd><ul class="simple">
+<li><p>High-performance local communication</p></li>
+<li><p>Uses Boost message queues</p></li>
+<li><p>Ideal for same-machine deployments</p></li>
+</ul>
+</dd>
+<dt><strong>Unix Domain Sockets</strong></dt><dd><ul class="simple">
+<li><p>Low-latency local communication</p></li>
+<li><p>POSIX-compliant systems</p></li>
+<li><p>Efficient for co-located processes</p></li>
+</ul>
+</dd>
+</dl>
+</section>
+<section id="server-implementations">
+<h3>Server Implementations<a class="headerlink" href="#server-implementations" title="Link to this heading"></a></h3>
+<p>The examples work with various matrixserver implementations:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">server_simulator</span></code>: Software renderer for development</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">server_FPGA</span></code>: FTDI USB interface for FPGA systems</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">server_FPGA_RPISPI</span></code>: Raspberry Pi SPI interface</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">server_RGBMatrix</span></code>: Direct Raspberry Pi GPIO control</p></li>
+</ul>
+</section>
+</section>
+<section id="platform-specific-features">
+<h2>Platform-Specific Features<a class="headerlink" href="#platform-specific-features" title="Link to this heading"></a></h2>
+<p>The build system automatically detects platform capabilities:</p>
+<section id="raspberry-pi-detection">
+<h3>Raspberry Pi Detection<a class="headerlink" href="#raspberry-pi-detection" title="Link to this heading"></a></h3>
+<p>The CMake configuration detects Raspberry Pi systems by checking for <code class="docutils literal notranslate"><span class="pre">/boot/LICENCE.broadcom</span></code> and enables additional applications:</p>
+<ul class="simple">
+<li><p><strong>IMU Integration</strong>: MPU6050 sensor support</p></li>
+<li><p><strong>Hardware PWM</strong>: Direct GPIO control</p></li>
+<li><p><strong>Specialized Applications</strong>: Rainbow particle effects, PixelFlow variants</p></li>
+</ul>
+</section>
+<section id="cross-platform-components">
+<h3>Cross-Platform Components<a class="headerlink" href="#cross-platform-components" title="Link to this heading"></a></h3>
+<p>All platforms support:</p>
+<ul class="simple">
+<li><p><strong>Core Applications</strong>: CubeTestApp, PixelFlow3</p></li>
+<li><p><strong>Standard Input</strong>: USB joystick support</p></li>
+<li><p><strong>Network Connectivity</strong>: TCP-based server communication</p></li>
+<li><p><strong>Image Processing</strong>: Imlib2-based picture display</p></li>
+</ul>
+</section>
+</section>
+<section id="development-workflow">
+<h2>Development Workflow<a class="headerlink" href="#development-workflow" title="Link to this heading"></a></h2>
+<p>The typical development and deployment workflow:</p>
+<ol class="arabic simple">
+<li><p><strong>Setup</strong>: Install matrixserver framework and dependencies</p></li>
+<li><p><strong>Development</strong>: Use software simulator for application development</p></li>
+<li><p><strong>Testing</strong>: Validate applications with various server implementations</p></li>
+<li><p><strong>Deployment</strong>: Package applications for target hardware platforms</p></li>
+</ol>
+</section>
+<section id="package-management">
+<h2>Package Management<a class="headerlink" href="#package-management" title="Link to this heading"></a></h2>
+<p>The project includes Debian package generation:</p>
+<ul class="simple">
+<li><p><strong>Dependency Management</strong>: Automatic matrixserver dependency declaration</p></li>
+<li><p><strong>Installation Paths</strong>: Standardized deployment locations (<code class="docutils literal notranslate"><span class="pre">/home/pi/APPS</span></code> on Raspberry Pi)</p></li>
+<li><p><strong>System Integration</strong>: Proper package metadata and installation scripts</p></li>
+</ul>
+<p>This architecture provides flexibility for both development and production deployments while maintaining consistent APIs and behavior across different hardware platforms.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="LED Matrix Cube Examples" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="installation.html" class="btn btn-neutral float-right" title="Installation" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Matrix Server Framework.
+      <span class="lastupdated">Last updated on May 12, 2026.
+      </span></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

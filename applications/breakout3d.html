@@ -1,0 +1,804 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Breakout3D &mdash; LED Matrix Cube Examples Documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=01f34227"></script>
+      <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="PixelFlow" href="pixelflow.html" />
+    <link rel="prev" title="Blackout3D" href="blackout3d.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            LED Matrix Cube Examples
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../overview.html">Overview</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../overview.html#project-purpose">Project Purpose</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview.html#architecture-overview">Architecture Overview</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../overview.html#framework-layer">Framework Layer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../overview.html#application-layer">Application Layer</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../overview.html#hardware-support">Hardware Support</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../overview.html#development-platforms">Development Platforms</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../overview.html#production-platforms">Production Platforms</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../overview.html#display-technologies">Display Technologies</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../overview.html#d-cube-displays">3D Cube Displays</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../overview.html#d-matrix-displays">2D Matrix Displays</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../overview.html#connection-architecture">Connection Architecture</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../overview.html#primary-connection-methods">Primary Connection Methods</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../overview.html#server-implementations">Server Implementations</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../overview.html#platform-specific-features">Platform-Specific Features</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../overview.html#raspberry-pi-detection">Raspberry Pi Detection</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../overview.html#cross-platform-components">Cross-Platform Components</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../overview.html#development-workflow">Development Workflow</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview.html#package-management">Package Management</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../installation.html#prerequisites">Prerequisites</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../installation.html#framework-dependency">Framework Dependency</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../installation.html#system-dependencies">System Dependencies</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../installation.html#build-system-requirements">Build System Requirements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation.html#platform-detection">Platform Detection</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../installation.html#raspberry-pi-detection">Raspberry Pi Detection</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../installation.html#enabled-applications-by-platform">Enabled Applications by Platform</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../installation.html#building-from-source">Building from Source</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../installation.html#basic-build-process">Basic Build Process</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../installation.html#build-configuration-options">Build Configuration Options</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../installation.html#dependency-resolution">Dependency Resolution</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../installation.html#cmake-package-discovery">CMake Package Discovery</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../installation.html#library-linking-configuration">Library Linking Configuration</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../installation.html#troubleshooting-build-issues">Troubleshooting Build Issues</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../installation.html#common-problems-and-solutions">Common Problems and Solutions</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../installation.html#deployment">Deployment</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../installation.html#package-generation">Package Generation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../installation.html#manual-installation">Manual Installation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../installation.html#running-applications">Running Applications</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../installation.html#server-requirement">Server Requirement</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../installation.html#application-execution">Application Execution</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../installation.html#connection-priority">Connection Priority</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../cmake.html">CMake Project Details</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../cmake.html#project-structure">Project Structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cmake.html#main-cmake-configuration">Main CMake Configuration</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../cmake.html#project-metadata">Project Metadata</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../cmake.html#global-build-settings">Global Build Settings</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../cmake.html#platform-detection">Platform Detection</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../cmake.html#raspberry-pi-detection">Raspberry Pi Detection</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../cmake.html#macos-specific-configuration">macOS-Specific Configuration</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../cmake.html#dependency-management">Dependency Management</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../cmake.html#matrixapplication-discovery">matrixapplication Discovery</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../cmake.html#boost-configuration">Boost Configuration</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../cmake.html#individual-application-configuration">Individual Application Configuration</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../cmake.html#typical-application-cmake-structure">Typical Application CMake Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../cmake.html#library-detection-patterns">Library Detection Patterns</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../cmake.html#application-selection">Application Selection</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../cmake.html#conditional-compilation">Conditional Compilation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../cmake.html#package-generation">Package Generation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../cmake.html#cpack-configuration">CPack Configuration</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../cmake.html#build-targets">Build Targets</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../cmake.html#standard-targets">Standard Targets</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../cmake.html#custom-build-options">Custom Build Options</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../cmake.html#enabling-additional-applications">Enabling Additional Applications</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../cmake.html#custom-library-paths">Custom Library Paths</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../cmake.html#debug-configuration">Debug Configuration</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../cmake.html#build-system-maintenance">Build System Maintenance</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../cmake.html#adding-new-applications">Adding New Applications</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../cmake.html#dependency-updates">Dependency Updates</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../architecture.html">Architecture</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../architecture.html#framework-architecture">Framework Architecture</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../architecture.html#application-base-classes">Application Base Classes</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../architecture.html#cubeapplication-class">CubeApplication Class</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../architecture.html#matrixapplication-class">MatrixApplication Class</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../architecture.html#specialized-application-types">Specialized Application Types</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../architecture.html#animation-and-effects-applications">Animation and Effects Applications</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../architecture.html#interactive-game-applications">Interactive Game Applications</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../architecture.html#framework-core-components">Framework Core Components</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../architecture.html#connection-management">Connection Management</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../architecture.html#frame-rate-control">Frame Rate Control</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../architecture.html#input-processing">Input Processing</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../architecture.html#hardware-abstraction">Hardware Abstraction</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../architecture.html#server-implementation-abstraction">Server Implementation Abstraction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../architecture.html#display-abstraction">Display Abstraction</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../architecture.html#design-patterns">Design Patterns</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../architecture.html#application-lifecycle-pattern">Application Lifecycle Pattern</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../architecture.html#resource-management-pattern">Resource Management Pattern</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../architecture.html#state-management-pattern">State Management Pattern</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../architecture.html#performance-optimization">Performance Optimization</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../architecture.html#frame-rate-optimization">Frame Rate Optimization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../architecture.html#memory-optimization">Memory Optimization</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../architecture.html#real-world-application-patterns">Real-World Application Patterns</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../architecture.html#game-state-management-breakout3d">Game State Management (Breakout3D)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../architecture.html#particle-system-architecture-pixelflow">Particle System Architecture (PixelFlow)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../architecture.html#multi-player-game-management-snake-breakout3d">Multi-Player Game Management (Snake/Breakout3D)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../architecture.html#physics-and-collision-systems-breakout3d">Physics and Collision Systems (Breakout3D)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../architecture.html#advanced-input-handling">Advanced Input Handling</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../architecture.html#high-score-and-persistence-breakout3d-snake">High Score and Persistence (Breakout3D/Snake)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../parameters.html">Dynamic Parameter System</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../parameters.html#core-concepts">Core Concepts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../parameters.html#how-to-use">How to Use</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../parameters.html#register-parameters-in-the-constructor">1. Register Parameters in the Constructor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../parameters.html#read-parameters-in-your-loop">2. Read Parameters in Your Loop</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../parameters.html#supported-parameter-types">Supported Parameter Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../parameters.html#presets">Presets</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../parameters.html#network-communication">Network Communication</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Applications</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="index.html#application-overview">Application Overview</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="index.html#d-cube-applications">3D Cube Applications</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="cubetestapp.html">CubeTestApp</a></li>
+<li class="toctree-l4"><a class="reference internal" href="snake.html">Snake</a></li>
+<li class="toctree-l4"><a class="reference internal" href="blackout3d.html">Blackout3D</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Breakout3D</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#d-matrix-applications">2D Matrix Applications</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#animation-and-effects-applications">Animation and Effects Applications</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="pixelflow.html">PixelFlow</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#hardware-integration">Hardware Integration</a><ul class="simple">
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#application-selection-guide">Application Selection Guide</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="index.html#for-3d-led-cube-hardware">For 3D LED Cube Hardware</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#for-2d-matrix-displays">For 2D Matrix Displays</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#for-effects-and-animation">For Effects and Animation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#platform-compatibility">Platform Compatibility</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="index.html#all-platforms-desktop-raspberry-pi">All Platforms (Desktop + Raspberry Pi)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#raspberry-pi-only">Raspberry Pi Only</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#build-configuration">Build Configuration</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#common-application-features">Common Application Features</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="index.html#input-handling">Input Handling</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#frame-rate-management">Frame Rate Management</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#performance-tuning">Performance Tuning</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#development-patterns">Development Patterns</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="index.html#application-structure">Application Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#main-loop-pattern">Main Loop Pattern</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../api/index.html">API Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../api/index.html#framework-base-classes">Framework Base Classes</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../api/index.html#cubeapplication-class">CubeApplication Class</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api/index.html#matrixapplication-class">MatrixApplication Class</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../api/index.html#common-patterns-and-utilities">Common Patterns and Utilities</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../api/index.html#programming-patterns">Programming Patterns</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api/index.html#input-and-control-systems">Input and Control Systems</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api/index.html#color-and-visual-systems">Color and Visual Systems</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../api/index.html#quick-reference">Quick Reference</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../api/index.html#essential-classes">Essential Classes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api/index.html#essential-data-types">Essential Data Types</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../api/index.html#application-lifecycle">Application Lifecycle</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../api/index.html#standard-application-pattern">Standard Application Pattern</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api/index.html#frame-rate-management">Frame Rate Management</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../api/index.html#connection-architecture">Connection Architecture</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../api/index.html#server-communication">Server Communication</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../api/index.html#performance-considerations">Performance Considerations</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../api/index.html#optimization-techniques">Optimization Techniques</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../api/index.html#error-handling">Error Handling</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../api/index.html#connection-failures">Connection Failures</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api/index.html#resource-management">Resource Management</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">LED Matrix Cube Examples</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Applications</a></li>
+      <li class="breadcrumb-item active">Breakout3D</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/applications/breakout3d.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="breakout3d">
+<h1>Breakout3D<a class="headerlink" href="#breakout3d" title="Link to this heading"></a></h1>
+<p><strong>Breakout3D</strong> is a full-featured 3D implementation of the classic Breakout arcade game, showcasing advanced game mechanics, physics simulation, and multiplayer functionality within the LED cube environment.</p>
+<section id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Link to this heading"></a></h2>
+<p>Breakout3D demonstrates:</p>
+<ul class="simple">
+<li><p><strong>Complete Game Implementation</strong> - Full game loop with pregame, ingame, and postgame states</p></li>
+<li><p><strong>3D Physics System</strong> - Vector-based ball movement with realistic collision detection</p></li>
+<li><p><strong>Multiplayer Support</strong> - Two-player competitive gameplay with joystick controls</p></li>
+<li><p><strong>AI Integration</strong> - Automatic AI opponents when joysticks are unavailable</p></li>
+<li><p><strong>Scoring System</strong> - Point rewards, penalties, and persistent high score tracking</p></li>
+<li><p><strong>Power-ups</strong> - Special abilities including slow motion and rocket ball</p></li>
+<li><p><strong>Advanced UI</strong> - Multi-screen text rendering and game state display</p></li>
+</ul>
+</section>
+<section id="game-mechanics">
+<h2>Game Mechanics<a class="headerlink" href="#game-mechanics" title="Link to this heading"></a></h2>
+<section id="core-gameplay">
+<h3>Core Gameplay<a class="headerlink" href="#core-gameplay" title="Link to this heading"></a></h3>
+<p>The game follows classic Breakout mechanics adapted for 3D space:</p>
+<ol class="arabic simple">
+<li><p><strong>Players</strong> control paddles that wrap around the bottom edges of the cube</p></li>
+<li><p><strong>Balls</strong> bounce in 3D space, reflecting off cube surfaces and player paddles</p></li>
+<li><p><strong>Blocks</strong> are arranged on the top face and must be destroyed for points</p></li>
+<li><p><strong>Lives</strong> are managed through ball respawning and penalty systems</p></li>
+<li><p><strong>Victory</strong> occurs when all blocks are destroyed or time expires</p></li>
+</ol>
+</section>
+<section id="game-states">
+<h3>Game States<a class="headerlink" href="#game-states" title="Link to this heading"></a></h3>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">enum</span><span class="w"> </span><span class="nc">GameState</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">pregame</span><span class="p">,</span><span class="w"> </span><span class="n">ingame</span><span class="p">,</span><span class="w"> </span><span class="n">postgame</span><span class="w"> </span><span class="p">};</span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt><strong>Pregame State:</strong></dt><dd><ul class="simple">
+<li><p>Display instructions and controls</p></li>
+<li><p>Show current high score</p></li>
+<li><p>Wait for player input to start</p></li>
+<li><p>Initialize game objects</p></li>
+</ul>
+</dd>
+<dt><strong>Ingame State:</strong></dt><dd><ul class="simple">
+<li><p>Active physics simulation</p></li>
+<li><p>Player paddle control</p></li>
+<li><p>Ball-block collision detection</p></li>
+<li><p>Real-time scoring and timer</p></li>
+</ul>
+</dd>
+<dt><strong>Postgame State:</strong></dt><dd><ul class="simple">
+<li><p>Display final scores and winner</p></li>
+<li><p>Update and save high scores</p></li>
+<li><p>Show victory animations</p></li>
+<li><p>Automatic return to pregame</p></li>
+</ul>
+</dd>
+</dl>
+</section>
+</section>
+<section id="implementation-details">
+<h2>Implementation Details<a class="headerlink" href="#implementation-details" title="Link to this heading"></a></h2>
+<section id="core-architecture">
+<h3>Core Architecture<a class="headerlink" href="#core-architecture" title="Link to this heading"></a></h3>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">BreakoutGame</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">CubeApplication</span><span class="w"> </span><span class="p">{</span>
+<span class="k">private</span><span class="o">:</span>
+<span class="w">    </span><span class="k">enum</span><span class="w"> </span><span class="nc">GameState</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">pregame</span><span class="p">,</span><span class="w"> </span><span class="n">ingame</span><span class="p">,</span><span class="w"> </span><span class="n">postgame</span><span class="w"> </span><span class="p">};</span>
+<span class="w">    </span><span class="n">GameState</span><span class="w"> </span><span class="n">gameState_</span><span class="p">;</span>
+
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">Player</span><span class="o">*&gt;</span><span class="w"> </span><span class="n">players_</span><span class="p">;</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">Ball</span><span class="o">*&gt;</span><span class="w"> </span><span class="n">balls_</span><span class="p">;</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">Block</span><span class="o">*&gt;</span><span class="w"> </span><span class="n">blocks_</span><span class="p">;</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">Joystick</span><span class="o">*&gt;</span><span class="w"> </span><span class="n">joysticks_</span><span class="p">;</span>
+
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">remainingSeconds_</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">currentHighScore</span><span class="p">;</span>
+
+<span class="k">public</span><span class="o">:</span>
+<span class="w">    </span><span class="n">BreakoutGame</span><span class="p">()</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">CubeApplication</span><span class="p">(</span><span class="mi">40</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;192.168.188.106&quot;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">reset</span><span class="p">();</span>
+<span class="w">        </span><span class="n">updateHighScoreFromToFile</span><span class="p">();</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="n">loop</span><span class="p">()</span><span class="w"> </span><span class="k">override</span><span class="p">;</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+</section>
+<section id="game-object-classes">
+<h3>Game Object Classes<a class="headerlink" href="#game-object-classes" title="Link to this heading"></a></h3>
+<p><strong>Player Class:</strong></p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">Player</span><span class="w"> </span><span class="p">{</span>
+<span class="k">private</span><span class="o">:</span>
+<span class="w">    </span><span class="kt">float</span><span class="w"> </span><span class="n">score_</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">id_</span><span class="p">;</span>
+<span class="w">    </span><span class="n">Color</span><span class="w"> </span><span class="n">color_</span><span class="p">;</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">Vector3i</span><span class="o">&gt;</span><span class="w"> </span><span class="n">paddlePixels_</span><span class="p">;</span>
+<span class="w">    </span><span class="n">Joystick</span><span class="o">*</span><span class="w"> </span><span class="n">joystick_</span><span class="p">;</span>
+<span class="w">    </span><span class="n">Ball</span><span class="o">*</span><span class="w"> </span><span class="n">lastBall_</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">float</span><span class="w"> </span><span class="n">vel_</span><span class="p">;</span>
+
+<span class="k">public</span><span class="o">:</span>
+<span class="w">    </span><span class="n">Player</span><span class="p">(</span><span class="n">CubeApplication</span><span class="o">*</span><span class="w"> </span><span class="n">renderCube</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">id</span><span class="p">,</span><span class="w"> </span><span class="n">Joystick</span><span class="o">*</span><span class="w"> </span><span class="n">joystick</span><span class="p">);</span>
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">step</span><span class="p">();</span><span class="w">              </span><span class="c1">// Update player state</span>
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">render</span><span class="p">();</span><span class="w">            </span><span class="c1">// Draw paddle</span>
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">doKIMove</span><span class="p">();</span><span class="w">          </span><span class="c1">// AI movement logic</span>
+<span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="nf">collidesWith</span><span class="p">(</span><span class="n">Vector3i</span><span class="w"> </span><span class="n">pos</span><span class="p">);</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p><strong>Ball Class:</strong></p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">Ball</span><span class="w"> </span><span class="p">{</span>
+<span class="k">private</span><span class="o">:</span>
+<span class="w">    </span><span class="n">Vector3f</span><span class="w"> </span><span class="n">position_</span><span class="p">;</span>
+<span class="w">    </span><span class="n">Vector3f</span><span class="w"> </span><span class="n">velocity_</span><span class="p">;</span>
+<span class="w">    </span><span class="n">Vector3f</span><span class="w"> </span><span class="n">acceleration_</span><span class="p">;</span>
+<span class="w">    </span><span class="n">Color</span><span class="w"> </span><span class="n">color_</span><span class="p">;</span>
+<span class="w">    </span><span class="n">Player</span><span class="o">*</span><span class="w"> </span><span class="n">lastPlayer_</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">float</span><span class="w"> </span><span class="n">speed_</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="n">isDead_</span><span class="p">;</span>
+
+<span class="k">public</span><span class="o">:</span>
+<span class="w">    </span><span class="n">Ball</span><span class="p">(</span><span class="n">CubeApplication</span><span class="o">*</span><span class="w"> </span><span class="n">renderCube</span><span class="p">,</span><span class="w"> </span><span class="n">Vector3f</span><span class="w"> </span><span class="n">startPosition</span><span class="p">,</span>
+<span class="w">         </span><span class="n">Vector3f</span><span class="w"> </span><span class="n">startVelocity</span><span class="p">,</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="n">speed</span><span class="p">);</span>
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">step</span><span class="p">();</span><span class="w">              </span><span class="c1">// Physics update</span>
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">render</span><span class="p">();</span><span class="w">            </span><span class="c1">// Draw ball</span>
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">reflect</span><span class="p">(</span><span class="n">Vector3f</span><span class="w"> </span><span class="n">reflectionVector</span><span class="p">);</span>
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">die</span><span class="p">();</span><span class="w">               </span><span class="c1">// Handle ball death</span>
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">reset</span><span class="p">();</span><span class="w">             </span><span class="c1">// Respawn ball</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p><strong>Block Class:</strong></p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">Block</span><span class="w"> </span><span class="p">{</span>
+<span class="k">private</span><span class="o">:</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">Vector3i</span><span class="o">&gt;</span><span class="w"> </span><span class="n">blockPixels_</span><span class="p">;</span>
+<span class="w">    </span><span class="n">Color</span><span class="w"> </span><span class="n">color_</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">score_</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">size_</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="n">isDead_</span><span class="p">;</span>
+
+<span class="k">public</span><span class="o">:</span>
+<span class="w">    </span><span class="n">Block</span><span class="p">(</span><span class="n">CubeApplication</span><span class="o">*</span><span class="w"> </span><span class="n">renderCube</span><span class="p">,</span><span class="w"> </span><span class="n">ScreenNumber</span><span class="w"> </span><span class="n">screenNr</span><span class="p">,</span>
+<span class="w">          </span><span class="n">Vector2i</span><span class="w"> </span><span class="n">topLeftCorner</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">size</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">score</span><span class="p">,</span><span class="w"> </span><span class="n">Color</span><span class="w"> </span><span class="n">color</span><span class="p">);</span>
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">render</span><span class="p">();</span>
+<span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="nf">collidesWith</span><span class="p">(</span><span class="n">Vector3f</span><span class="w"> </span><span class="n">pos</span><span class="p">);</span>
+<span class="w">    </span><span class="n">Vector3f</span><span class="w"> </span><span class="nf">centerPosition</span><span class="p">();</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="physics-system">
+<h2>Physics System<a class="headerlink" href="#physics-system" title="Link to this heading"></a></h2>
+<section id="ball-movement">
+<h3>Ball Movement<a class="headerlink" href="#ball-movement" title="Link to this heading"></a></h3>
+<p>The physics system implements realistic 3D ball movement:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">Ball::step</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">isDead_</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">accelerate</span><span class="p">();</span><span class="w">              </span><span class="c1">// Apply acceleration</span>
+<span class="w">        </span><span class="n">move</span><span class="p">();</span><span class="w">                    </span><span class="c1">// Update position</span>
+
+<span class="w">        </span><span class="c1">// Constrain to cube bounds</span>
+<span class="w">        </span><span class="k">for</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">3</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+<span class="w">            </span><span class="n">position_</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">constrain</span><span class="p">(</span><span class="n">position_</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="w"> </span><span class="mf">0.0f</span><span class="p">,</span>
+<span class="w">                                    </span><span class="p">(</span><span class="kt">float</span><span class="p">)</span><span class="n">VIRTUALCUBEMAXINDEX</span><span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// Handle edge transitions and reflections</span>
+<span class="w">        </span><span class="n">Vector3i</span><span class="w"> </span><span class="n">currentPosition</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">iPosition</span><span class="p">();</span>
+<span class="w">        </span><span class="n">EdgeNumber</span><span class="w"> </span><span class="n">currentEdge</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ca_</span><span class="o">-&gt;</span><span class="n">getEdgeNumber</span><span class="p">(</span><span class="n">currentPosition</span><span class="p">);</span>
+
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">currentEdge</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">anyEdge</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">currentEdge</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">lastEdge_</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">handleEdgeTransition</span><span class="p">(</span><span class="n">currentEdge</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="collision-detection">
+<h3>Collision Detection<a class="headerlink" href="#collision-detection" title="Link to this heading"></a></h3>
+<p><strong>Ball-Paddle Collision:</strong></p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">BreakoutGame::playerLoop</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">for</span><span class="p">(</span><span class="k">auto</span><span class="w"> </span><span class="n">player</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">players_</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">for</span><span class="p">(</span><span class="k">auto</span><span class="w"> </span><span class="n">ball</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">balls_</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">if</span><span class="p">(</span><span class="n">player</span><span class="o">-&gt;</span><span class="n">collidesWith</span><span class="p">(</span><span class="n">ball</span><span class="o">-&gt;</span><span class="n">iPosition</span><span class="p">()))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="n">Vector3f</span><span class="w"> </span><span class="n">collisionVector</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ball</span><span class="o">-&gt;</span><span class="n">iPosition</span><span class="p">().</span><span class="n">cast</span><span class="o">&lt;</span><span class="kt">float</span><span class="o">&gt;</span><span class="p">()</span><span class="w"> </span><span class="o">-</span>
+<span class="w">                                         </span><span class="n">player</span><span class="o">-&gt;</span><span class="n">centerPosition</span><span class="p">().</span><span class="n">cast</span><span class="o">&lt;</span><span class="kt">float</span><span class="o">&gt;</span><span class="p">();</span>
+<span class="w">                </span><span class="n">collisionVector</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">-15</span><span class="p">;</span><span class="w">  </span><span class="c1">// Always upward facing</span>
+
+<span class="w">                </span><span class="n">ball</span><span class="o">-&gt;</span><span class="n">reflect</span><span class="p">(</span><span class="n">collisionVector</span><span class="p">);</span>
+<span class="w">                </span><span class="n">ball</span><span class="o">-&gt;</span><span class="n">resetSpeed</span><span class="p">();</span>
+<span class="w">                </span><span class="n">player</span><span class="o">-&gt;</span><span class="n">blink</span><span class="p">(</span><span class="n">Color</span><span class="o">::</span><span class="n">white</span><span class="p">());</span>
+
+<span class="w">                </span><span class="c1">// Link player and ball for tracking</span>
+<span class="w">                </span><span class="n">ball</span><span class="o">-&gt;</span><span class="n">setLastPlayer</span><span class="p">(</span><span class="n">player</span><span class="p">);</span>
+<span class="w">                </span><span class="n">player</span><span class="o">-&gt;</span><span class="n">setLastBall</span><span class="p">(</span><span class="n">ball</span><span class="p">);</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>Ball-Block Collision:</strong></p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">BreakoutGame::blockLoop</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">for</span><span class="p">(</span><span class="k">auto</span><span class="w"> </span><span class="n">block</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">blocks_</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">for</span><span class="p">(</span><span class="k">auto</span><span class="w"> </span><span class="n">ball</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">balls_</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">if</span><span class="p">(</span><span class="n">block</span><span class="o">-&gt;</span><span class="n">collidesWith</span><span class="p">(</span><span class="n">ball</span><span class="o">-&gt;</span><span class="n">position</span><span class="p">()))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="c1">// Award points to last player who touched ball</span>
+<span class="w">                </span><span class="k">if</span><span class="p">(</span><span class="n">ball</span><span class="o">-&gt;</span><span class="n">lastPlayer</span><span class="p">()</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="nb">NULL</span><span class="p">)</span>
+<span class="w">                    </span><span class="n">ball</span><span class="o">-&gt;</span><span class="n">lastPlayer</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">addToScore</span><span class="p">(</span><span class="n">block</span><span class="o">-&gt;</span><span class="n">score</span><span class="p">());</span>
+
+<span class="w">                </span><span class="c1">// Calculate reflection vector based on collision angle</span>
+<span class="w">                </span><span class="n">Vector3f</span><span class="w"> </span><span class="n">incidentVec3</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ball</span><span class="o">-&gt;</span><span class="n">position</span><span class="p">()</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">block</span><span class="o">-&gt;</span><span class="n">centerPosition</span><span class="p">();</span>
+<span class="w">                </span><span class="n">Vector3f</span><span class="w"> </span><span class="n">reflectionVector</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">calculateReflection</span><span class="p">(</span><span class="n">incidentVec3</span><span class="p">);</span>
+
+<span class="w">                </span><span class="n">ball</span><span class="o">-&gt;</span><span class="n">reflect</span><span class="p">(</span><span class="n">reflectionVector</span><span class="p">);</span>
+<span class="w">                </span><span class="n">block</span><span class="o">-&gt;</span><span class="n">die</span><span class="p">();</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="multiplayer-features">
+<h2>Multiplayer Features<a class="headerlink" href="#multiplayer-features" title="Link to this heading"></a></h2>
+<section id="player-management">
+<h3>Player Management<a class="headerlink" href="#player-management" title="Link to this heading"></a></h3>
+<p>Breakout3D supports two players with automatic AI fallback:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">BreakoutGame::reset</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">players_</span><span class="p">.</span><span class="n">clear</span><span class="p">();</span>
+<span class="w">    </span><span class="n">joysticks_</span><span class="p">.</span><span class="n">clear</span><span class="p">();</span>
+
+<span class="w">    </span><span class="c1">// Initialize controllers and players</span>
+<span class="w">    </span><span class="n">joysticks_</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">Joystick</span><span class="p">(</span><span class="mi">0</span><span class="p">));</span><span class="w">  </span><span class="c1">// Player 1</span>
+<span class="w">    </span><span class="n">joysticks_</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">Joystick</span><span class="p">(</span><span class="mi">1</span><span class="p">));</span><span class="w">  </span><span class="c1">// Player 2</span>
+
+<span class="w">    </span><span class="n">players_</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">Player</span><span class="p">(</span><span class="k">this</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">joysticks_</span><span class="p">[</span><span class="mi">0</span><span class="p">]));</span>
+<span class="w">    </span><span class="n">players_</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">Player</span><span class="p">(</span><span class="k">this</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">joysticks_</span><span class="p">[</span><span class="mi">1</span><span class="p">]));</span>
+
+<span class="w">    </span><span class="c1">// Spawn balls for each player</span>
+<span class="w">    </span><span class="n">spawnBallForPlayer</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+<span class="w">    </span><span class="n">spawnBallForPlayer</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="ai-system">
+<h3>AI System<a class="headerlink" href="#ai-system" title="Link to this heading"></a></h3>
+<p>When joysticks are not available, AI automatically controls players:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">Player::doKIMove</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">if</span><span class="p">(</span><span class="n">lastBall_</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="nb">NULL</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">Vector3i</span><span class="w"> </span><span class="n">ballPos</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">lastBall_</span><span class="o">-&gt;</span><span class="n">iPosition</span><span class="p">();</span>
+<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">xPosBall</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">calculateBallScreenPosition</span><span class="p">(</span><span class="n">ballPos</span><span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// Add randomization for realistic AI behavior</span>
+<span class="w">        </span><span class="n">xPosBall</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="mi">10</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">rand</span><span class="p">()</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="mi">20</span><span class="p">;</span>
+
+<span class="w">        </span><span class="c1">// Move paddle toward ball position</span>
+<span class="w">        </span><span class="k">if</span><span class="p">(</span><span class="n">xPosBall</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">pos_</span><span class="p">)</span>
+<span class="w">            </span><span class="n">vel_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">-1</span><span class="p">;</span>
+<span class="w">        </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="p">(</span><span class="n">xPosBall</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">pos_</span><span class="p">)</span>
+<span class="w">            </span><span class="n">vel_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="w">        </span><span class="k">else</span>
+<span class="w">            </span><span class="n">vel_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="power-ups-and-special-features">
+<h2>Power-ups and Special Features<a class="headerlink" href="#power-ups-and-special-features" title="Link to this heading"></a></h2>
+<section id="slow-motion">
+<h3>Slow Motion<a class="headerlink" href="#slow-motion" title="Link to this heading"></a></h3>
+<p>Players can activate slow motion by holding the R shoulder button:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">if</span><span class="p">(</span><span class="n">joystick_</span><span class="o">-&gt;</span><span class="n">getButton</span><span class="p">(</span><span class="mi">7</span><span class="p">)</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">score_</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">lastBall_</span><span class="o">-&gt;</span><span class="n">setSpeed</span><span class="p">(</span><span class="mf">0.5</span><span class="p">);</span><span class="w">    </span><span class="c1">// Half speed</span>
+<span class="w">    </span><span class="n">addToScore</span><span class="p">(</span><span class="mf">-0.025</span><span class="p">);</span><span class="w">          </span><span class="c1">// Continuous score cost</span>
+<span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">lastBall_</span><span class="o">-&gt;</span><span class="n">resetSpeed</span><span class="p">();</span><span class="w">     </span><span class="c1">// Normal speed</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="rocket-ball">
+<h3>Rocket Ball<a class="headerlink" href="#rocket-ball" title="Link to this heading"></a></h3>
+<p>Players can fire rocket balls using the B button:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">if</span><span class="p">(</span><span class="n">joystick_</span><span class="o">-&gt;</span><span class="n">getButtonPress</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">score_</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">100</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">lastBall_</span><span class="o">-&gt;</span><span class="n">velocity</span><span class="p">(</span><span class="n">Vector3f</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">-1</span><span class="p">));</span><span class="w">  </span><span class="c1">// Straight down</span>
+<span class="w">    </span><span class="n">lastBall_</span><span class="o">-&gt;</span><span class="n">resetSpeed</span><span class="p">();</span>
+<span class="w">    </span><span class="n">addToScore</span><span class="p">(</span><span class="mi">-100</span><span class="p">);</span><span class="w">                         </span><span class="c1">// High score cost</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="scoring-system">
+<h2>Scoring System<a class="headerlink" href="#scoring-system" title="Link to this heading"></a></h2>
+<section id="point-values">
+<h3>Point Values<a class="headerlink" href="#point-values" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><strong>Block Destruction</strong>: +25 points per block</p></li>
+<li><p><strong>Ball Miss</strong>: -10 points (penalty)</p></li>
+<li><p><strong>Slow Motion Use</strong>: -0.025 points per frame</p></li>
+<li><p><strong>Rocket Ball</strong>: -100 points per use</p></li>
+</ul>
+</section>
+<section id="high-score-persistence">
+<h3>High Score Persistence<a class="headerlink" href="#high-score-persistence" title="Link to this heading"></a></h3>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">bool</span><span class="w"> </span><span class="nf">BreakoutGame::updateHighScoreFromToFile</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">score</span><span class="p">,</span><span class="w"> </span><span class="n">string</span><span class="w"> </span><span class="n">filename</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">fstream</span><span class="w"> </span><span class="n">highScoreFile</span><span class="p">;</span>
+<span class="w">    </span><span class="n">highScoreFile</span><span class="p">.</span><span class="n">open</span><span class="p">(</span><span class="n">filename</span><span class="p">.</span><span class="n">data</span><span class="p">(),</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">fstream</span><span class="o">::</span><span class="n">binary</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">fstream</span><span class="o">::</span><span class="n">in</span><span class="p">);</span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">highScoreFile</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">highScoreFile</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">currentHighScore</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// Create file with default score</span>
+<span class="w">        </span><span class="n">highScoreFile</span><span class="p">.</span><span class="n">open</span><span class="p">(</span><span class="n">filename</span><span class="p">.</span><span class="n">data</span><span class="p">(),</span>
+<span class="w">                          </span><span class="n">std</span><span class="o">::</span><span class="n">fstream</span><span class="o">::</span><span class="n">binary</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">fstream</span><span class="o">::</span><span class="n">out</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">fstream</span><span class="o">::</span><span class="n">trunc</span><span class="p">);</span>
+<span class="w">        </span><span class="n">highScoreFile</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">score</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">currentHighScore</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">currentHighScore</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">score</span><span class="p">;</span>
+<span class="w">        </span><span class="c1">// Write new high score</span>
+<span class="w">        </span><span class="n">highScoreFile</span><span class="p">.</span><span class="n">close</span><span class="p">();</span>
+<span class="w">        </span><span class="n">highScoreFile</span><span class="p">.</span><span class="n">open</span><span class="p">(</span><span class="n">filename</span><span class="p">.</span><span class="n">data</span><span class="p">(),</span>
+<span class="w">                          </span><span class="n">std</span><span class="o">::</span><span class="n">fstream</span><span class="o">::</span><span class="n">binary</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">fstream</span><span class="o">::</span><span class="n">out</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">fstream</span><span class="o">::</span><span class="n">trunc</span><span class="p">);</span>
+<span class="w">        </span><span class="n">highScoreFile</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">currentHighScore</span><span class="p">;</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span><span class="w">  </span><span class="c1">// New high score achieved</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="user-interface">
+<h2>User Interface<a class="headerlink" href="#user-interface" title="Link to this heading"></a></h2>
+<section id="multi-screen-display">
+<h3>Multi-Screen Display<a class="headerlink" href="#multi-screen-display" title="Link to this heading"></a></h3>
+<p>The game utilizes all six cube faces for information display:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="c1">// Display player scores on multiple screens</span>
+<span class="kt">int</span><span class="w"> </span><span class="n">scrNrCounter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="k">for</span><span class="p">(</span><span class="k">auto</span><span class="w"> </span><span class="n">player</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">players_</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">drawText</span><span class="p">((</span><span class="n">ScreenNumber</span><span class="p">)</span><span class="n">scrNrCounter</span><span class="p">,</span><span class="w"> </span><span class="n">Vector2i</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">58</span><span class="p">),</span>
+<span class="w">            </span><span class="n">player</span><span class="o">-&gt;</span><span class="n">color</span><span class="p">(),</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">to_string</span><span class="p">(</span><span class="n">player</span><span class="o">-&gt;</span><span class="n">getId</span><span class="p">())</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&quot;: &quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="n">drawText</span><span class="p">((</span><span class="n">ScreenNumber</span><span class="p">)</span><span class="n">scrNrCounter</span><span class="p">,</span><span class="w"> </span><span class="n">Vector2i</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="w"> </span><span class="mi">58</span><span class="p">),</span>
+<span class="w">            </span><span class="n">Color</span><span class="o">::</span><span class="n">white</span><span class="p">(),</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">to_string</span><span class="p">(</span><span class="n">player</span><span class="o">-&gt;</span><span class="n">score</span><span class="p">()));</span>
+
+<span class="w">    </span><span class="c1">// Mirror on opposite screen</span>
+<span class="w">    </span><span class="n">drawText</span><span class="p">((</span><span class="n">ScreenNumber</span><span class="p">)(</span><span class="n">scrNrCounter</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">2</span><span class="p">),</span><span class="w"> </span><span class="n">Vector2i</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">58</span><span class="p">),</span>
+<span class="w">            </span><span class="n">player</span><span class="o">-&gt;</span><span class="n">color</span><span class="p">(),</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">to_string</span><span class="p">(</span><span class="n">player</span><span class="o">-&gt;</span><span class="n">getId</span><span class="p">())</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&quot;: &quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="n">scrNrCounter</span><span class="o">++</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="game-instructions">
+<h3>Game Instructions<a class="headerlink" href="#game-instructions" title="Link to this heading"></a></h3>
+<p>During pregame, instructions are displayed on multiple faces:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">playtext</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;PRESS A TO PLAY&quot;</span><span class="p">;</span>
+<span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">rbutton</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;R:  SLOMO&quot;</span><span class="p">;</span>
+<span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">bbutton</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;B: ROCKET&quot;</span><span class="p">;</span>
+
+<span class="k">for</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">4</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">drawText</span><span class="p">((</span><span class="n">ScreenNumber</span><span class="p">)</span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="n">Vector2i</span><span class="p">(</span><span class="n">CharacterBitmaps</span><span class="o">::</span><span class="n">centered</span><span class="p">,</span><span class="w"> </span><span class="mi">20</span><span class="p">),</span>
+<span class="w">            </span><span class="n">Color</span><span class="o">::</span><span class="n">white</span><span class="p">(),</span><span class="w"> </span><span class="n">playtext</span><span class="p">);</span>
+<span class="w">    </span><span class="n">drawText</span><span class="p">((</span><span class="n">ScreenNumber</span><span class="p">)</span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="n">Vector2i</span><span class="p">(</span><span class="n">CharacterBitmaps</span><span class="o">::</span><span class="n">centered</span><span class="p">,</span><span class="w"> </span><span class="mi">30</span><span class="p">),</span>
+<span class="w">            </span><span class="n">Color</span><span class="o">::</span><span class="n">white</span><span class="p">()</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mf">0.5</span><span class="p">,</span><span class="w"> </span><span class="n">rbutton</span><span class="p">);</span>
+<span class="w">    </span><span class="n">drawText</span><span class="p">((</span><span class="n">ScreenNumber</span><span class="p">)</span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="n">Vector2i</span><span class="p">(</span><span class="n">CharacterBitmaps</span><span class="o">::</span><span class="n">centered</span><span class="p">,</span><span class="w"> </span><span class="mi">36</span><span class="p">),</span>
+<span class="w">            </span><span class="n">Color</span><span class="o">::</span><span class="n">white</span><span class="p">()</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mf">0.5</span><span class="p">,</span><span class="w"> </span><span class="n">bbutton</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="building-and-running">
+<h2>Building and Running<a class="headerlink" href="#building-and-running" title="Link to this heading"></a></h2>
+<section id="build-configuration">
+<h3>Build Configuration<a class="headerlink" href="#build-configuration" title="Link to this heading"></a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Build Breakout3D</span>
+mkdir<span class="w"> </span>-p<span class="w"> </span>build<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>build
+cmake<span class="w"> </span>..<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>make<span class="w"> </span>breakout3d
+
+<span class="c1"># Run with matrixserver</span>
+./breakout3d
+</pre></div>
+</div>
+</section>
+<section id="controls">
+<h3>Controls<a class="headerlink" href="#controls" title="Link to this heading"></a></h3>
+<dl class="simple">
+<dt><strong>Player 1 &amp; 2:</strong></dt><dd><ul class="simple">
+<li><p><strong>Left Stick</strong>: Move paddle left/right</p></li>
+<li><p><strong>A Button</strong>: Start game (pregame state)</p></li>
+<li><p><strong>B Button</strong>: Rocket ball (costs 100 points)</p></li>
+<li><p><strong>R Shoulder</strong>: Slow motion (costs points continuously)</p></li>
+<li><p><strong>Select</strong>: Reset game</p></li>
+</ul>
+</dd>
+</dl>
+</section>
+<section id="performance">
+<h3>Performance<a class="headerlink" href="#performance" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><strong>Frame Rate</strong>: 40 FPS for smooth physics and responsive controls</p></li>
+<li><p><strong>Server Connection</strong>: Connects to <code class="docutils literal notranslate"><span class="pre">192.168.188.106</span></code> by default</p></li>
+<li><p><strong>Memory Usage</strong>: Efficient object pooling and cleanup</p></li>
+</ul>
+</section>
+</section>
+<section id="advanced-features">
+<h2>Advanced Features<a class="headerlink" href="#advanced-features" title="Link to this heading"></a></h2>
+<section id="edge-wrapping">
+<h3>Edge Wrapping<a class="headerlink" href="#edge-wrapping" title="Link to this heading"></a></h3>
+<p>Paddles wrap around cube edges seamlessly, with collision detection spanning multiple faces.</p>
+</section>
+<section id="physics-accuracy">
+<h3>Physics Accuracy<a class="headerlink" href="#physics-accuracy" title="Link to this heading"></a></h3>
+<p>The physics system includes:
+* Realistic ball acceleration and velocity
+* Proper collision reflection calculations
+* Edge case handling for corner bounces
+* Smooth interpolation for sub-pixel positioning</p>
+</section>
+<section id="state-persistence">
+<h3>State Persistence<a class="headerlink" href="#state-persistence" title="Link to this heading"></a></h3>
+<p>Game state is preserved between sessions:
+* High scores stored in persistent files
+* Game settings maintained across runs
+* Player statistics tracked</p>
+<p>This comprehensive implementation demonstrates advanced game development techniques within the LED cube framework, providing an engaging multiplayer experience with sophisticated physics and user interface design.</p>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="blackout3d.html" class="btn btn-neutral float-left" title="Blackout3D" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="pixelflow.html" class="btn btn-neutral float-right" title="PixelFlow" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Matrix Server Framework.
+      <span class="lastupdated">Last updated on May 12, 2026.
+      </span></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
